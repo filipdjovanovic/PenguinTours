@@ -1,7 +1,7 @@
 package com.penguins.project.model.Program;
 
-import com.penguins.project.model.Aranzman.Aranzman;
-import com.penguins.project.model.Lokacija.Lokacija;
+import com.penguins.project.model.Arrangement.Arrangement;
+import com.penguins.project.model.Location.Location;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,31 +33,15 @@ public class Program {
     private Long id;
 
     @Column(columnDefinition = "TEXT")
-    private String opis;
+    private String description;
 
-    private LocalDate datum;
+    private LocalDate date;
 
     @ManyToOne
-    private Aranzman aranzman;
+    private Arrangement arrangement;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "program_lokacija",joinColumns = @JoinColumn(name= "program_id"), inverseJoinColumns = @JoinColumn(name="lokacija_id"))
-    private Set<Lokacija> lokacije = new HashSet<>();
+    @JoinTable(name = "program_location",joinColumns = @JoinColumn(name= "program_id"), inverseJoinColumns = @JoinColumn(name="location_id"))
+    private Set<Location> locations = new HashSet<>();
 
-    /*
-    public Program(String opis, LocalDate datum, Aranzman aranzman, Set<Lokacija> lokacije) {
-        this.opis = opis;
-        this.datum = datum;
-        this.aranzman = aranzman;
-        this.lokacije = lokacije;
-    }
-
-    public Program(Long id, String opis, LocalDate datum, Aranzman aranzman) {
-        this.id = id;
-        this.opis = opis;
-        this.datum = datum;
-        this.aranzman = aranzman;
-    }
-
-     */
 }
