@@ -7,48 +7,35 @@ export default function Addarrangament(props){
     const [remark,setRemark]=useState('');
     const [accomodations,setAccomodations]=useState([]);
     const [programs,setPrograms]=useState([]);
-
-    const onNameChange=(e)=>{
-        setName(e.target.value);
-    }
-    const onPriceChange=(e)=>{
-        setPrice(e.target.value);
-    }
-    const onTransChange=(e)=>{
-        setTransportation(e.target.value);
-    }
-    const onRemarkChange=(e)=>{
-        setRemark(e.target.value);
-    }
     
 
     return(
         <div>
             <div className="d-flex justify-content-center"><h1>UNESI NOVI ARANZMAN!</h1></div>
-            <form className="needs-validation " novalidate>
+            <form novalidate>
             <div className="row ">
                 <div className="col-md-4 offset-md-4">
-                    <label htmlFor="naziv" className="form-label">Naziv aranzmana:</label>
+                    <label htmlFor="name" className="form-label">Naziv aranzmana:</label>
                     <input 
                         type={"text"}
                         className="form-control"  
                         placeholder="Unesite anziv aranzmana" 
                         name="name"
                         value={name} 
-                        onChange={(e)=>onNameChange(e)} 
+                        onChange={(e)=>setName(e.target.value)} 
                         required></input>
                 </div>
             </div>
             <div className="row">
             <div className="col-md-4 offset-md-4">
-                <label htmlFor="cena" className="form-label">Cena u evrima:</label>
+                <label htmlFor="price" className="form-label">Cena u evrima:</label>
                 <input 
                     type="number" 
                     className="form-control"  
                     placeholder="Unesite cenu aranzmana"  
                     name="price"
                     value={price}
-                    onChange={(e)=>onPriceChange(e)} 
+                    onChange={(e)=>setPrice(e.target.value)} 
                     required></input>
             </div>
             </div>
@@ -56,7 +43,7 @@ export default function Addarrangament(props){
             <div className="col-md-4 offset-md-4 my-2">
                 <label htmlFor="transportation" className="form-label">Tip prevoza:</label>
                 <br></br>
-                <select value={transportation} name="transportation" onChange={(e)=>onTransChange(e)} required>
+                <select value={transportation} name="transportation" onChange={(e)=>setTransportation(e.target.value)} required>
                     <option selected>Avion</option>
                     <option value="Autobus">Autobus</option>
                     <option value="Krstarenje">Krstarenje</option>
@@ -77,18 +64,17 @@ export default function Addarrangament(props){
                 <div className="form-check">
                 <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required></input>
                 <label className="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
+                    Prihvati uslove koriscenja!
                 </label>
                 </div>
             </div>
             </div>
             <div className="row">
             <div className="col-md-4 offset-md-4">
-                <button className="btn btn-primary" type="submit">Submit form</button>
+                <button className="btn btn-primary" type="submit">Unesi aranzman</button>
             </div>
             </div>
-            </form>
-            
+            </form>  
         </div>
     )
 }

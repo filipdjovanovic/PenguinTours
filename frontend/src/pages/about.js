@@ -1,7 +1,14 @@
 import React from "react";
 
-export default function About(){
+export default function Aboutuspage(){
     return(
-        <h1>O nama strana</h1>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-4 offset-md-4">
+                    <h1 className="text-center"></h1>
+
+                </div>
+            </div>
+        </div>
     );
 }

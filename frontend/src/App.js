@@ -1,22 +1,53 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navheader from './components/header';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import {BrowserRouter as Router, Outlet, Route, Routes} from 'react-router-dom'
 import Homepage from './pages/homepage';
-import About from './pages/about';
-import Contacts from './pages/contacts';
-import Addarrangament from './components/addarr';
+import Contactspage from './pages/contacts';
+import Searchpage from './pages/search';
+import Aboutuspage from './pages/about';
+import Loginpage from './pages/login';
+import Navheaderad from './components/headerad';
+import Adminpage from './pages/adminpage';
+import Footer from './components/footer';
+
+function Userlayout(){
+  return(
+    <>
+    <Navheader />
+    <Outlet />
+    <Footer />
+    </>
+  );
+}
+function Adminlayout(){
+  return(
+    <>
+    <Navheaderad />
+    <Outlet />
+    <Footer />
+    </>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <Navheader/>
-
       <Routes>
-        <Route exact path='/' element={<Homepage />} />
-        <Route exact path='/about' element={<About />} />
-        <Route exact path='/contacts' element={<Contacts />} />
-        <Route exact path='/arrangement/add' element={<Addarrangament />} />
+        <Route  path='/' element={<Userlayout />}>
+          <Route index element={<Homepage />} />
+          <Route path='aboutus' element={<Aboutuspage />} />
+          <Route path='contacts' element={<Contactspage />} />
+          <Route path='search' element={<Searchpage />} />
+          <Route path='login' element={<Loginpage />} />
+        </Route>
+        <Route path='/admin' element={<Adminlayout />}>
+          <Route index element={<Adminpage />} />
+          <Route path='aboutus' element={<Aboutuspage />} />
+          <Route path='contacts' element={<Contactspage />} />
+          <Route path='search' element={<Searchpage />} />
+          <Route path='login' element={<Loginpage />} />
+        </Route>
       </Routes>
     </Router>
   );
