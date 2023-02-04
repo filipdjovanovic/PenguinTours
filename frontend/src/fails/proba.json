@@ -1,0 +1,73 @@
+{
+    "name": "ISTANBUL DAN ZALJUBLJENIH",
+    "price": 1024,
+    "transportation": "Autobus",
+    "status": "Dostupno",
+    "remark": "Istanbul predstavlja prirodna vrata između Evrope i Azije, koji sa svojom raskošnom kulturnom zaostavštinom nikad ne prestaje da fascinira. Ovaj sjajni grad, podignut na mestu gde se bukvalno susreću istok i zapad, uobličile su 4 snažne civilizacije: grčka, rimska, vizantijska i osmanlijska. Kroz svoju istoriju ponosno je nosio imena: Bizantion, Novi Rim, Konstantinopolj, Carigrad i Istanbul. Danas je Istanbul velegrad, prava košnica sa preko 15 miliona stanovnika koji žive i rade na 2 kontinenta, izvlačeći ono najbolje iz oba sveta.",
+    "accomodations": [
+        {
+            "name": "ime_smestaja2",
+            "category": "Hotel2",
+            "type": "tip_smestaja2",
+            "tv": true,
+            "safe": true,
+            "fridge": true,
+            "ac": true,
+            "internet": true,
+            "location": {
+                "city": "Cuprija",
+                "country": "Srbija",
+                "continent": "Evropa"
+            }
+        },
+        {
+            "name": "ime_smestaja1",
+            "category": "Hotel1",
+            "type": "tip_smestaja1",
+            "tv": true,
+            "safe": true,
+            "fridge": true,
+            "ac": true,
+            "internet": true,
+            "location": {
+                "city": "Paracin",
+                "country": "Srbija",
+                "continent": "Evropa"
+            }
+        }
+    ],
+    "programs": [
+        {
+            "description": "Trla bana lan da joj prodje dan2",
+            "date": "08/12/2022",
+            "locations": [
+                {
+                    "city": "Novi Sad",
+                    "country": "Srbija",
+                    "continent": "Evropa"
+                },
+                {
+                    "city": "Subotica",
+                    "country": "Srbija",
+                    "continent": "Evropa"
+                }
+            ]
+        },
+        {
+            "description": "Trla bana lan da joj prodje dan1",
+            "date": "09/11/2022",
+            "locations": [
+                {
+                    "city": "Beograd",
+                    "country": "Srbija",
+                    "continent": "Evropa"
+                },
+                {
+                    "city": "Kragujevac",
+                    "country": "Srbija",
+                    "continent": "Evropa"
+                }
+            ]
+        }
+    ]
+}

@@ -5,25 +5,17 @@ export default function Loginpage(){
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
 
-   /* const onSubmitValidate=(e)=>{
-        const reg=new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
-        
-        if(reg.test(password)){
-            return false;
-        }else {
-            return true;}
-    }*/
-
     return(
+        <div style={{backgroundColor:'floralwhite'}}>
         <div className="container" style={{height: '90vh',alignItems: 'center',justifyContent: 'center'}}>
-            <div className="row my-5">
+            <div className="row my-0 py-5">
                 <div className="col-md-4 offset-md-4">
                     <div className="login">
                 
                         <h1 className="text-center">Prijava</h1>
                         <h6 className="text-center">Ova prijava je samo za zaposlene u agenciji.</h6>
                         
-                        <form className="needs-validation">
+                        <form className="needs-validation was-validated">
                             <div className="form-group">
                                 <label className="form-label" htmlFor="email">Email adresa</label>
                                 <input className="form-control" 
@@ -62,7 +54,7 @@ export default function Loginpage(){
                     </div>
                 </div>
             </div>
-
-          </div>
+        </div>
+        </div>
     )
 }

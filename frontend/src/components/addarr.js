@@ -26,7 +26,7 @@ export default function Addarrangament(props){
                         required></input>
                 </div>
             </div>
-            <div className="row">
+            <div className="row ">
             <div className="col-md-4 offset-md-4">
                 <label htmlFor="price" className="form-label">Cena u evrima:</label>
                 <input 

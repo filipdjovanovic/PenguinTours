@@ -10,6 +10,7 @@ import Loginpage from './pages/login';
 import Navheaderad from './components/headerad';
 import Adminpage from './pages/adminpage';
 import Footer from './components/footer';
+import Arrview from './pages/arrview';
 
 function Userlayout(){
   return(
@@ -40,6 +41,7 @@ function App() {
           <Route path='contacts' element={<Contactspage />} />
           <Route path='search' element={<Searchpage />} />
           <Route path='login' element={<Loginpage />} />
+          <Route path='arrangamentview' element={<Arrview />} />
         </Route>
         <Route path='/admin' element={<Adminlayout />}>
           <Route index element={<Adminpage />} />
@@ -47,6 +49,7 @@ function App() {
           <Route path='contacts' element={<Contactspage />} />
           <Route path='search' element={<Searchpage />} />
           <Route path='login' element={<Loginpage />} />
+          <Route path='arrangamentview' element={<Arrview />} />
         </Route>
       </Routes>
     </Router>
