@@ -3,25 +3,23 @@ package com.penguins.project.controller.Arrangement;
 import com.penguins.project.controller.Program.ProgramParam;
 import com.penguins.project.controller.Accomodation.AccomodationParam;
 import com.penguins.project.model.Arrangement.Arrangement;
-import com.penguins.project.model.Location.Location;
 import com.penguins.project.model.Program.Program;
 import com.penguins.project.model.Accomodation.Accomodation;
 import lombok.Getter;
+import lombok.ToString;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
+@ToString
 public class ArrangementParam {
     private String name;
     private Integer price;
     private String transportation;
     private String status;
 
-    //private Integer broj_dana;
     private String remark;
     private Set<ProgramParam> programs = new HashSet<>();
     private Set<AccomodationParam> accomodations = new HashSet<>();
@@ -29,36 +27,12 @@ public class ArrangementParam {
     public Arrangement toArrangement(){
         Set<Accomodation> accomodations = this.getAccomodations()
                 .stream()
-                .map(accomodationParam -> Accomodation
-                        .builder()
-                        .name(accomodationParam.getName())
-                        .category(accomodationParam.getCategory())
-                        .type(accomodationParam.getType())
-                        .tv(accomodationParam.getTv())
-                        .safe(accomodationParam.getSafe())
-                        .fridge(accomodationParam.getFridge())
-                        .ac(accomodationParam.getAc())
-                        .internet(accomodationParam.getInternet())
-                        .build())
+                .map(accomodationParam -> accomodationParam.toAccomodation())
                 .collect(Collectors.toSet());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
         Set<Program> programs = this.getPrograms()
                 .stream()
-                .map(programParam -> Program
-                        .builder()
-                        .description(programParam.getDescription())
-                        .date(LocalDate.parse(programParam.getDate(),formatter))
-                        .locations(programParam.getLocations()
-                                .stream()
-                                .map(locationParam -> Location.builder()
-                                        .city(locationParam.getCity())
-                                        .country(locationParam.getCountry())
-                                        .continent(locationParam.getContinent())
-                                        .build())
-                                .collect(Collectors.toSet()))
-                        .build())
+                .map(programParam -> programParam.toProgram())
                 .collect(Collectors.toSet());
 
         Arrangement arrangement = Arrangement.builder()

@@ -40,7 +40,7 @@ public class Program {
     @ManyToOne
     private Arrangement arrangement;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "program_location",joinColumns = @JoinColumn(name= "program_id"), inverseJoinColumns = @JoinColumn(name="location_id"))
     private Set<Location> locations = new HashSet<>();
 

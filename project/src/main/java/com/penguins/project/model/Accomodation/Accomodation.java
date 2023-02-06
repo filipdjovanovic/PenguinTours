@@ -2,6 +2,7 @@ package com.penguins.project.model.Accomodation;
 
 
 import com.penguins.project.model.Arrangement.Arrangement;
+import com.penguins.project.model.Location.Location;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -54,7 +55,11 @@ public class Accomodation {
     private Byte[] slika6;
 
     @ManyToMany(mappedBy = "accomodations")
-    private Set<Arrangement> aragements = new HashSet<>();
+    private Set<Arrangement> arrangements = new HashSet<>();
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Location location;
 
     
 }

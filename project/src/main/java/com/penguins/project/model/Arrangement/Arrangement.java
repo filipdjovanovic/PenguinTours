@@ -6,6 +6,8 @@ import com.penguins.project.model.Reservation.Reservation;
 import com.penguins.project.model.Accomodation.Accomodation;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,18 +33,17 @@ public class Arrangement {
             strategy = GenerationType.SEQUENCE,
             generator = "arrangement_sequence")
     private Long id;
+
+    @Column(unique=true)
     private String name;
     private Integer price;
     private String transportation;
     private String status;
 
-    //private Integer broj_dana;
-
     @Column(columnDefinition = "TEXT")
     private String remark;
 
-
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "arrangement_id")
     private Set<Reservation> reservations = new HashSet<>();
 
@@ -50,8 +51,9 @@ public class Arrangement {
     @JoinColumn(name = "arrangement_id")
     private Set<Program> programs = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "accomodation_arrangement", joinColumns = @JoinColumn(name = "arrangement_id"), inverseJoinColumns = @JoinColumn(name = "accomodation_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Accomodation> accomodations = new HashSet<>();
 
 }

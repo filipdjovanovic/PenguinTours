@@ -31,9 +31,9 @@ public class Person {
     private String name;
     private String lastName;
     private String email;
-    private String contant;
-    private String adress;
-    @OneToMany
+    private String contact;
+    private String address;
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="person_id")
     private Set<Reservation> reservations = new HashSet<>();
 
