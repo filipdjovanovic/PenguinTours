@@ -57,25 +57,26 @@ export default function Searchpage(){
         })
     }
 
-    const findAllBooks=(currentPage)=>{
-        currentPage -= 1;
-        axios.get("http://localhost:8080/arrangemnts/all?page=" +
+    const findAllBooks=()=>{
+        setCurrentPage(currentPage-1);
+        axios.get("http://localhost:8080/arrangements/all")/* +
               currentPage +
               "&size=" +
-              arrPerPage /*+
+              arrPerPage +
               "&sortBy=price&sortDir=" +
-              sortDir*/
-            )
-            .then((response) => response.data)
+              sortDir
+            )*/
+            .then((res) => res.data)
             .then((data) => (
-                setArrangaments(data.content),
+                setArrangaments(data)
+                /*setArrangaments(data.content),
                 setTotalPages(data.totalPages),
                 setTotalElements(data.totalElements),
-                setCurrentPage(data.number + 1)
+                setCurrentPage(data.number + 1)*/
             ))
             .catch((error) => {
                 console.log(error);
-                localStorage.removeItem("jwtToken");
+                /*localStorage.removeItem("jwtToken");*/
                 /*this.props.history.push("/");*/
             });
     }
@@ -90,7 +91,7 @@ export default function Searchpage(){
     };
 
     useEffect(()=>{
-        findAllBooks(currentPage);
+        findAllBooks();
     },[])
     
     const firstPage = () => {
@@ -153,7 +154,7 @@ export default function Searchpage(){
     
     const searchData = (currentPage) => {
     currentPage -= 1;
-    axios.get("http://localhost:8080/arrangament/get" +
+    axios.get("http://localhost:8080/arrangement/get" +
             (search.name?"?name="+search.name+"&":"") +
             (search.city?"?city="+search.city+"&":"") +
             (search.country?"?country="+search.country+"&":"") +
@@ -276,7 +277,7 @@ export default function Searchpage(){
         <div className="container my-2" style={{border: 'solid',borderColor:'navy',borderRadius:'20px'}}>
             <div className="row row-cols-1 row-cols-md-3 g-4 my-2 justify-content-center">
                 {arrangaments && arrangaments.map((item) => (
-                    <Cardlist name='Rim novembar 2022' destinaction='Rim' days='3' price='105' transport='Autobus' />
+                    <Cardlist name={item.name}  days='3' price='105' transport={item.transportation} />
                 ))}
             </div>
             {/*{arrangaments.length>0?*/}
