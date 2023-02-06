@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Link} from 'react-router-dom'
+import Cardlist from "./cardlist";
 
 export default function Cardview(){
     const [data,setData]=useState([])
@@ -12,43 +12,25 @@ export default function Cardview(){
         })
     },[])
     return(
-        <div className="row my-3 mx-3">
-            <div className="col-md-4">
-                <Link className="card" style={{width: '18rem',textDecoration: 'none' }} to='/arrangamentview'>
-                    <img src="..." className="card-img-top" alt="Slika"></img>
-                    <div className="card-body">
-                        <h5 className="card-title" style={{ color: 'black' }}>Card title</h5>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                    </div>
-                </Link>
-            </div>
-            <div className="col-md-4">
-                <Link className="card" style={{width: '18rem', textDecoration: 'none' }} to='/arrangamentview'>
-                    <img src="..." className="card-img-top" alt="Slika"></img>
-                    <div className="card-body">
-                        <h5 className="card-title" style={{ color: 'black' }}>Card title</h5>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                    </div>
-                </Link>
-            </div>
-            <div className="col-md-4">
-                <Link className="card" style={{width: '18rem',textDecoration: 'none' }} to='/arrangamentview'>
-                    <img src="..." className="card-img-top" alt="Slika"></img>
-                    <div className="card-body">
-                        <h5 className="card-title" style={{ color: 'black' }}>Card title</h5>
-                        <p className="card-text  my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                        <p className="card-text my-0" style={{ color: 'black' }}>Some quick example </p>
-                    </div>
-                </Link>
+        <>
+        <div className="row justify-content-center">
+            <div className="col-md-8 offset-md-2 mx-5 py-4 text-center">
+                <h1 classname="text-center text-break" style={{color:'navy'}} >Poslednja mesta!</h1>
             </div>
         </div>
+        <div style={{borderTop:'solid',borderBottom:'solid', borderColor:'darkorange'}}>
+        <div className="row my-0 mx-3 p-5" >
+            <Cardlist name="Rim dan zaljubljenih 2023" destination="Rim" price="150" days="3" transport="Autobus"/>
+            <Cardlist name="Rim dan zaljubljenih 2023" destination="Rim" price="150" days="3" transport="Autobus"/>
+            <Cardlist name="Rim dan zaljubljenih 2023" destination="Rim" price="150" days="3" transport="Autobus"/>
+        </div>
+        <hr style={{color:'darkorange'}}></hr>
+        <div className="row my-0 mx-3 p-5" >
+            <Cardlist name="Rim dan zaljubljenih 2023" destination="Rim" price="150" days="3" transport="Autobus"/>
+            <Cardlist name="Rim dan zaljubljenih 2023" destination="Rim" price="150" days="3" transport="Autobus"/>
+            <Cardlist name="Rim dan zaljubljenih 2023" destination="Rim" price="150" days="3" transport="Autobus"/>
+        </div>
+        </div>
+        </>
     );
 }

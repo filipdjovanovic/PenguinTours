@@ -2,13 +2,54 @@ import React, { useState } from 'react'
 import Cardview from '../components/cards';
 
 export default function Homepage(){
-    const [name,setName]=useState('');
-    const [transportation,setTransportation]=useState('');
-    const [location,setLocation]=useState('');
-    const [country,setCountry]=useState('');
-    const [continent,setContinent]=useState('');
-    const [startdate,setStartdate]=useState(new Date());
-    const [enddate,setEnddate]=useState(new Date());
+
+    const [data,setData]=useState({
+        name:"",
+        city:"",
+        country:"",
+        continent:"Evropa",
+        transportation:"Autobus",
+        startdate:"",
+        enddate:"",
+    })
+
+    const updateName=(e)=>{
+        setData(previousData=>{
+            return{...previousData,name:(e.target.value)}
+        })
+    }
+    const updateCity=(e)=>{
+        setData(previousData=>{
+            return{...previousData,city:(e.target.value)}
+        })
+    }
+    const updateCountry=(e)=>{
+        setData(previousData=>{
+            return{...previousData,country:(e.target.value)}
+        })
+    }
+    const updateContinent=(e)=>{
+        setData(previousData=>{
+            return{...previousData,continent:(e.target.value)}
+        })
+    }
+    const updateStartdate=(e)=>{
+        setData(previousData=>{
+            return{...previousData,startdate:(e.target.value)}
+        })
+    }
+    const updateEnddate=(e)=>{
+        setData(previousData=>{
+            return{...previousData,enddate:(e.target.value)}
+        })
+    }
+    const updateTransportation=(e)=>{
+        setData(previousData=>{
+            return{...previousData,transportation:(e.target.value)}
+        })
+    }
+
+    
 
 
     return(
@@ -34,8 +75,8 @@ export default function Homepage(){
                                 type="text" 
                                 id="name" 
                                 name="name"
-                                value={name}
-                                onChange={(e)=>setName(e.target.value)}
+                                value={data.name}
+                                onChange={updateName}
                                 style={{borderRadius:'20px'}}
                                 ></input>
                             </div>
@@ -45,8 +86,8 @@ export default function Homepage(){
                                 type="text" 
                                 id="location" 
                                 name="location"
-                                value={location}
-                                onChange={(e)=>setLocation(e.target.value)}
+                                value={data.city}
+                                onChange={updateCity}
                                 style={{borderRadius:'20px'}}
                                 ></input>
                             </div>
@@ -56,8 +97,8 @@ export default function Homepage(){
                                 type="text" 
                                 id="country" 
                                 name="country"
-                                value={country}
-                                onChange={(e)=>setCountry(e.target.value)}
+                                value={data.country}
+                                onChange={updateCountry}
                                 style={{borderRadius:'20px'}}
                                 ></input>
                             </div>
@@ -66,7 +107,7 @@ export default function Homepage(){
                         <div className='col-md-4 form-group'>
                             <label htmlFor="continent" className="form-label">Kontinent:</label>
                             <br></br>
-                            <select value={continent} name="continent" onChange={(e)=>setContinent(e.target.value)}>
+                            <select value={data.continent} name="continent" onChange={updateContinent}>
                                 <option selected value="Evropa">Evropa</option>
                                 <option value="Azija">Azija</option>
                                 <option value="Afrika">Afrika</option>
@@ -78,7 +119,7 @@ export default function Homepage(){
                             <div className='col-md-4 form-group'>
                             <label htmlFor="transportation" className="form-label">Tip prevoza:</label>
                             <br></br>
-                            <select value={transportation} name="transportation" onChange={(e)=>setTransportation(e.target.value)}>
+                            <select value={data.transportation} name="transportation" onChange={updateTransportation}>
                                 <option selected value="Autobus">Autobus</option>
                                 <option value="Avion">Avion</option>
                                 <option value="Krstarenje">Krstarenje</option>
@@ -93,11 +134,11 @@ export default function Homepage(){
                         <div className='row justify-content-center text-center'>
                             <div className='col-md-4 form-group '>
                             <label htmlFor="startDate">Od:</label>
-                            <input id="startDate" class="form-control" type="date" name='startdate' value={startdate}  onChange={(e)=>setStartdate(e.target.value)}/>
+                            <input id="startDate" class="form-control" type="date" name='startdate' value={data.startdate}  onChange={updateStartdate}/>
                             </div>
                             <div className='col-md-4 form-group'>
                             <label htmlFor="endDate">Do:</label>
-                            <input id="endDate" class="form-control" type="date" name='enddate' value={enddate} onChange={(e)=>setEnddate(e.target.value)}/>
+                            <input id="endDate" class="form-control" type="date" name='enddate' value={data.enddate} onChange={updateEnddate}/>
                             </div>
                         </div>
                     </form>
