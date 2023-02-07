@@ -20,8 +20,8 @@ public class ArrangementW {
     private String transportation;
     private String status;
     private String remark;
-    private Set<AccomodationW> accomodations = new HashSet<>();
-    private Set<ProgramW> programs = new HashSet<>();
+    private Set<AccomodationW> accomodations;
+    private Set<ProgramW> programs;
 
 
     public ArrangementW(Arrangement arrangement) {

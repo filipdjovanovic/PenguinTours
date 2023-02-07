@@ -47,51 +47,5 @@ public class ArrangementParam {
 
         return arrangement;
 
-        /*
-        Set<Smestaj> smestaji = arrangementParam.getSmestaji()
-                .stream()
-                .map(smestajParam -> Smestaj
-                        .builder()
-                        .ime(smestajParam.getIme())
-                        .kategorija(smestajParam.getKategorija())
-                        .tip_smestaja(smestajParam.getTip_smestaja())
-                        .tv(smestajParam.getTv())
-                        .sef(smestajParam.getSef())
-                        .frizider(smestajParam.getSef())
-                        .klima(smestajParam.getKlima())
-                        .internet(smestajParam.getInternet())
-                        .build())
-                .collect(Collectors.toSet());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-
-        Set<Program> programi = arrangementParam.getProgrami()
-                .stream()
-                .map(programParam -> Program
-                        .builder()
-                        .opis(programParam.getOpis())
-                        .datum(LocalDate.parse(programParam.getDatum(),formatter))
-                        .lokacije(programParam.getLokacije()
-                                .stream()
-                                .map(lokacijaParam -> Lokacija.builder()
-                                        .grad(lokacijaParam.getGrad())
-                                        .drzava(lokacijaParam.getDrzava())
-                                        .kontinent(lokacijaParam.getKontinent())
-                                        .build())
-                                .collect(Collectors.toSet()))
-                        .build())
-                .collect(Collectors.toSet());
-
-        Arrangement arrangement = Arrangement.builder()
-                        .naziv(arrangementParam.getNaziv())
-                        .cena(arrangementParam.getCena())
-                        .prevoz(arrangementParam.getPrevoz())
-                        .status(arrangementParam.getStatus())
-                        .napomena(arrangementParam.getNapomena())
-                        .smestaji(smestaji)
-                        .programi(programi)
-                        .build();
-
-         */
     }
 }

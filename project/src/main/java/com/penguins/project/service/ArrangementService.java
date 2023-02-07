@@ -113,16 +113,6 @@ public class ArrangementService {
                 ,pageable
                 ,page.getTotalElements());
 
-
-        /*
-        List<ArrangementShortW> list = arrangementRepository.findAllArrangements(pageable)
-                .stream()
-                .map(obj -> new ArrangementShortW(obj)
-                )
-                .toList();
-        return list;
-        */
-
     }
 
     @Transactional
@@ -209,6 +199,9 @@ public class ArrangementService {
         if (arrangementParam.getPrice() != null && !arrangement.getPrice().equals(arrangementParam.getPrice())){
             arrangement.setPrice(arrangementParam.getPrice());
         }
+        if (arrangementParam.getTransportation() != null && !arrangement.getTransportation().equals(arrangementParam.getTransportation())){
+            arrangement.setTransportation(arrangementParam.getTransportation());
+        }
         if (arrangementParam.getStatus() != null && !arrangement.getStatus().equals(arrangementParam.getStatus())){
             arrangement.setStatus(arrangementParam.getStatus());
         }
@@ -242,7 +235,7 @@ public class ArrangementService {
         if (accomodations != null){
             //accomodationRepository.deleteByArragements(arrangementRepository.getReferenceById(id));
 
-            accomodations
+            accomodations = accomodations
                     .stream()
                     .peek(accomodation -> {
                         Location location = accomodation.getLocation();
@@ -252,7 +245,8 @@ public class ArrangementService {
                         }else{
                             accomodation.setLocation(location);
                         }
-                    });
+                    })
+                    .collect(Collectors.toSet());
 
             arrangement.setAccomodations(accomodations
                     .stream()
@@ -273,14 +267,93 @@ public class ArrangementService {
 
 
     }
-    /*
+
+
+
+
     @Transactional
-    public List<ArrangementShortW> find(){
-        //vratio bih list svih ARRANGEMENTSHORTW -
+    public Page<ArrangementShortW> getArrangements(String name, String city,String country,String continent,Date startDate,Date endDate, Pageable pageable) {
 
-        //
+        Page<ArrangementShortW> page = this.getAllArrangements(pageable);
+        List<ArrangementShortW> allArrangements = page.getContent();
+
+        if (name != null) {
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementShortW.getName().equals(name))
+                    .toList();
+        }
+        if (startDate != null) {
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementShortW.getStartDate().equals(startDate))
+                    .toList();
+        }
+        if (endDate != null) {
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementShortW.getEndDate().equals(endDate))
+                    .toList();
+        }
+        if (city != null){
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementRepository
+                            .getArrangementById(arrangementShortW.getId())
+                            .getPrograms()
+                                .stream()
+                                .anyMatch(program -> program
+                                        .getLocations()
+                                        .stream()
+                                        .anyMatch(location -> location
+                                                .getCity()
+                                                .equals(city)
+                                        )
+                                )
+                    )
+                    .toList();
+        }
+        if (country != null){
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementRepository
+                            .getArrangementById(arrangementShortW.getId())
+                            .getPrograms()
+                            .stream()
+                            .anyMatch(program -> program
+                                    .getLocations()
+                                    .stream()
+                                    .anyMatch(location -> location
+                                            .getCountry()
+                                            .equals(country)
+                                    )
+                            )
+                    )
+                    .toList();
+        }
+        if (continent != null){
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementRepository
+                            .getArrangementById(arrangementShortW.getId())
+                            .getPrograms()
+                            .stream()
+                            .anyMatch(program -> program
+                                    .getLocations()
+                                    .stream()
+                                    .anyMatch(location -> location
+                                            .getContinent()
+                                            .equals(country)
+                                    )
+                            )
+                    )
+                    .toList();
+        }
+
+        return new PageImpl<>(
+                allArrangements
+                ,pageable
+                ,page.getTotalElements());
+
     }
-
-     */
-
 }

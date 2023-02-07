@@ -24,14 +24,6 @@ public class LocationParam {
                 .continent(this.getContinent())
                 .build();
 
-        /*
-        List<Location> existingLocations = locationService.getByCityCountryContinent(location.getCity(),location.getCountry(),location.getContinent());
-
-        if (!existingLocations.isEmpty()){
-            location = existingLocations.get(0);
-        }
-        */
-
         return location;
     }
 

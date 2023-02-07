@@ -24,4 +24,8 @@ public class LocationService {
         return locationRepository.findAll(example);
 
     }
+
+    public List<Location> findByCityAndCountryAndContinent(Location location){
+        return locationRepository.findByCityAndCountryAndContinent(location.getCity(),location.getCountry(),location.getContinent());
+    }
 }

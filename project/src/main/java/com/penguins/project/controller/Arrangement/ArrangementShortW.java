@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Date;
-import java.time.LocalDate;
+
 
 @Data
 @AllArgsConstructor
@@ -19,6 +19,7 @@ public class ArrangementShortW {
     private String name;
     private Integer price;
     private String transportation;
+    private String status;
     private String city;
     private String country;
     private String continent;
@@ -31,12 +32,13 @@ public class ArrangementShortW {
         this.setName((String) obj[1]);
         this.setPrice((Integer) obj[2]);
         this.setTransportation((String) obj[3]);
-        this.setCity((String) obj[4]);
-        this.setCountry((String) obj[5]);
-        this.setContinent((String) obj[6]);
-        this.setNumberOfDays((Long) obj[7]);
-        this.setStartDate((Date) obj[8]);
-        this.setEndDate((Date) obj[9]);
+        this.setStatus((String) obj[4]);
+        this.setCity((String) obj[5]);
+        this.setCountry((String) obj[6]);
+        this.setContinent((String) obj[7]);
+        this.setNumberOfDays((Long) obj[8]);
+        this.setStartDate((Date) obj[9]);
+        this.setEndDate((Date) obj[10]);
     }
 
 }

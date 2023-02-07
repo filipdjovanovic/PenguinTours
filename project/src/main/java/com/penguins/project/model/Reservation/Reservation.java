@@ -32,6 +32,7 @@ public class Reservation {
     private Integer numberOfAdults;
     private Integer numberOfKids;
     private String paymentMethod;
+    private String accepted;
 
     @Column(columnDefinition = "TEXT")
     private String comment;

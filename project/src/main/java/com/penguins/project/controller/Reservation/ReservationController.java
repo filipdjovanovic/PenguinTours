@@ -1,15 +1,13 @@
 package com.penguins.project.controller.Reservation;
 
 
+import com.penguins.project.model.Arrangement.Arrangement;
 import com.penguins.project.model.Person.Person;
 import com.penguins.project.model.Reservation.Reservation;
 import com.penguins.project.service.ArrangementService;
 import com.penguins.project.service.PersonService;
 import com.penguins.project.service.ReservationService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +26,12 @@ public class ReservationController {
     @PostMapping(path = "/reservation/add", params={"arrangement_id"})
     public void addReservation(@RequestParam Long arrangement_id, @RequestBody ReservationParam reservationParam){
         Reservation reservation = reservationParam.toReservation();
-        reservation.setArrangement(arrangementService.getArrangementById(arrangement_id));
+        Arrangement arrangement = arrangementService.getArrangementById(arrangement_id);
+        if (arrangement == null){
+            throw new IllegalStateException("Arrangement with id " + arrangement_id + " does not exists");
+        }
+
+        reservation.setArrangement(arrangement);
         Person person = reservation.getPerson();
         List<Person> persons = personService
                 .findByNameAndLastNameAndEmailAndContactAndAddress(person.getName(),person.getLastName(),person.getEmail(),person.getContact(),person.getAddress());
@@ -38,5 +41,16 @@ public class ReservationController {
             reservation.setPerson(persons.get(0));
         }
         reservationService.addReservation(reservation);
+    }
+
+    @GetMapping(value = "/reservation/all")
+    @ResponseBody
+    public List<ReservationW> getAllReservations(){
+        return reservationService.getAllReservations();
+    }
+
+    @PutMapping(value = "/reservation/update")
+    public void updateReservation(@RequestParam Long id, @RequestParam String accepted){
+        reservationService.updateReservation(id,accepted);
     }
 }

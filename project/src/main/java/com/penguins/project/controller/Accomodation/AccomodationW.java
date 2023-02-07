@@ -19,7 +19,6 @@ public class AccomodationW {
     private Boolean fridge;
     private Boolean ac;
     private Boolean internet;
-
     private LocationW location;
 
     public AccomodationW(Accomodation accomodation){

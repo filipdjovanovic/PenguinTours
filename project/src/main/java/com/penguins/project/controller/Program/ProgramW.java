@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class ProgramW {
     private String description;
     private String date;
-    private Set<LocationW> locations = new HashSet<>();
+    private Set<LocationW> locations;
 
     public ProgramW (Program program){
         this.description = program.getDescription();
