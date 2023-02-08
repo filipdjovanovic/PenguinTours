@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-
+import java.util.List;
 
 
 @RequestMapping(path = "/arrangements")
@@ -76,5 +76,15 @@ public class ArrangementController {
         Pageable pageable = PageRequest.of(page,size);
         return arrangementService.getArrangements(name,city,country,continent,startDate,endDate,pageable);
 
+    }
+
+    @DeleteMapping(value = "/delete", params={"id"})
+    public void deleteArrangement(@RequestParam Long id){
+        arrangementService.deleteArrangement(id);
+    }
+
+    @GetMapping(value = "/hot")
+    public List<ArrangementShortW> getTopArrangements() {
+        return arrangementService.getTopArrangements();
     }
 }

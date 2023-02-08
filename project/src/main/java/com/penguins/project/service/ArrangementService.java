@@ -356,4 +356,14 @@ public class ArrangementService {
                 ,page.getTotalElements());
 
     }
+
+    @Transactional
+    public List<ArrangementShortW> getTopArrangements(){
+        List<ArrangementShortW> list = arrangementRepository.findTopArrangements()
+                .stream()
+                .map(obj -> new ArrangementShortW(obj)
+                )
+                .toList();
+        return list;
+    }
 }
