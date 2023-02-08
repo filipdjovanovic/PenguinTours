@@ -77,4 +77,9 @@ public class ArrangementController {
         return arrangementService.getArrangements(name,city,country,continent,startDate,endDate,pageable);
 
     }
+    
+    @DeleteMapping(value = "/delete", params={"id"})
+    public void deleteArrangement(@RequestParam Long id){
+        arrangementService.deleteArrangement(id);
+    }
 }
