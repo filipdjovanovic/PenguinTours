@@ -5,7 +5,7 @@ export default function Programview(props){
         <>
         <div className="row my-2 py-2" style={{backgroundColor:'whitesmoke'}}>
             <div className="col-md-12">
-                <b>{(props.day)}. DAN: {props.view.locations.map((location,index)=>(<span>{location.city} - </span>))}{props.view.date}</b> 
+                <b>{(props.day)}. DAN: {props.view.locations.map((location,index)=>(<span key={index}>{location.city} - </span>))}{props.view.date}</b> 
             </div>
         </div>
         <div className="row my-2 py-2">

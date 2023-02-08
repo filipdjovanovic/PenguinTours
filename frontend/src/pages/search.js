@@ -14,11 +14,11 @@ export default function Searchpage(){
         enddate:"",
     })
     const [arrangaments,setArrangaments]=useState([]);
-    const [currentPage,setCurrentPage]=useState("1");
-    const [arrPerPage,setArrPerPage]=useState("50");
+    const [currentPage,setCurrentPage]=useState(1);
+    const [arrPerPage,setArrPerPage]=useState(1);
     const [sortDir,setSortDir]=useState("asc");
-    const [totalPages,setTotalPages]=useState("");
-    const [totalElements,setTotalElements]=useState("");
+    const [totalPages,setTotalPages]=useState(0);
+    const [totalElements,setTotalElements]=useState(0);
 
 
     const updateName=(e)=>{
@@ -57,28 +57,24 @@ export default function Searchpage(){
         })
     }
 
-    const findAllBooks=()=>{
-        setCurrentPage(currentPage-1);
-        axios.get("http://localhost:8080/arrangements/all")/* +
-              currentPage +
-              "&size=" +
-              arrPerPage +
-              "&sortBy=price&sortDir=" +
-              sortDir
-            )*/
-            .then((res) => res.data)
+    const doOnRender=(dat)=>{
+        setArrangaments(dat.content);
+        setTotalPages(dat.totalPages);
+        setTotalElements(dat.totalElements);
+        setCurrentPage(dat.number + 1);
+    };
+
+    const findAllArr=()=>{
+        axios.get("http://localhost:8080/arrangements/all?page="+(currentPage-1).toString()+"&size="+arrPerPage.toString())
+            .then((response) => response.data)
             .then((data) => (
-                setArrangaments(data)
-                /*setArrangaments(data.content),
-                setTotalPages(data.totalPages),
-                setTotalElements(data.totalElements),
-                setCurrentPage(data.number + 1)*/
+                doOnRender(data)
             ))
-            .catch((error) => {
+            /*.catch((error) => {
                 console.log(error);
                 /*localStorage.removeItem("jwtToken");*/
-                /*this.props.history.push("/");*/
-            });
+                /*this.props.history.push("/");
+            });*/
     }
 
     const sortData = () => {
@@ -86,56 +82,73 @@ export default function Searchpage(){
           sortDir === "asc"
             ? setSortDir("desc")
             : setSortDir("asc");
-          findAllBooks(currentPage);
+          findAllArr(currentPage);
         }, 500);
     };
 
     useEffect(()=>{
-        findAllBooks();
+        if(checkSearch){
+            searchData()
+        }else{
+            findAllArr();
+        }
+        findAllArr();
     },[])
-    
-    const firstPage = () => {
-    let firstPage = 1;
-    if (currentPage > firstPage) {
-        if (search) {
-            searchData(firstPage);
+
+    const checkSearch=()=>{
+        let check=(search.name || search.city || search.country || search.continent || search.transportation || search.startdate || search.enddate);
+        if (check) {
+            return true;
         } else {
-            findAllBooks(firstPage);
+            return false;
         }
     }
+    
+    const firstPage = () => {
+        if (currentPage > firstPage) {
+            if (checkSearch) {
+                setCurrentPage(1)
+                searchData();
+            } else {
+                setCurrentPage(1);
+                findAllArr();
+            }
+        }
     };
     
     const prevPage = () => {
-    let prevPage = 1;
-    if (currentPage > prevPage) {
-        if (search) {
-            searchData(currentPage - prevPage);
-        } else {
-            findAllBooks(currentPage - prevPage);
+        if (currentPage > 1) {
+            if (checkSearch) {
+                setCurrentPage(currentPage-1);
+                searchData();
+            } else {
+                setCurrentPage(currentPage - 1);
+                findAllArr();
+            }
         }
-    }
     };
 
     const lastPage = () => {
-    let condition = Math.ceil(
-        totalElements / arrPerPage
-    );
+    let condition = totalPages;
     if (currentPage < condition) {
-        if (search) {
-            searchData(condition);
+        if (checkSearch) {
+            setCurrentPage(condition);
+            searchData();
         } else {
-            findAllBooks(condition);
+            setCurrentPage(condition);
+            findAllArr();
         }
     }
     };
     
     const nextPage = () => {
-    if (currentPage < Math.ceil(totalElements / arrPerPage)
-    ) {
-        if (search) {
-            searchData(currentPage + 1);
+    if (currentPage < totalPages) {
+        if (checkSearch) {
+            setCurrentPage(currentPage + 1);
+            searchData();
         } else {
-            findAllBooks(currentPage + 1);
+            setCurrentPage(currentPage + 1);
+            findAllArr(currentPage + 1);
         }
     }
     };
@@ -149,31 +162,27 @@ export default function Searchpage(){
                     startdate:"",
                     enddate:"",
                 });
-        findAllBooks(currentPage);
+        findAllArr();
     };
     
-    const searchData = (currentPage) => {
-    currentPage -= 1;
-    axios.get("http://localhost:8080/arrangement/get" +
-            (search.name?"?name="+search.name+"&":"") +
-            (search.city?"?city="+search.city+"&":"") +
-            (search.country?"?country="+search.country+"&":"") +
-            (search.continent?"?continent="+search.continent+"&":"") +
-            (search.transportation?"?transportation="+search.transportation+"&":"") +
-            (search.startdate?"?startDate="+search.startdate+"&":"") +
-            (search.enddate?"?endDate="+search.enddate:"") +
-            "?page=" +
-            currentPage +
-            "&size=" +
-            arrPerPage
-        )
-        .then((response) => response.data)
-        .then((data) => (
-            setArrangaments(data.content),
-            setTotalPages(data.totalPages),
-            setTotalElements(data.totalElements),
-            setCurrentPage(data.number + 1)
-        ));
+    const searchData = () => {
+        axios.get("http://localhost:8080/arrangement/get" +
+                (search.name?"?name="+search.name+"&":"") +
+                (search.city?"?city="+search.city+"&":"") +
+                (search.country?"?country="+search.country+"&":"") +
+                (search.continent?"?continent="+search.continent+"&":"") +
+                (search.transportation?"?transportation="+search.transportation+"&":"") +
+                (search.startdate?"?startDate="+search.startdate+"&":"") +
+                (search.enddate?"?endDate="+search.enddate:"") +
+                "?page=" +
+                (currentPage-1).toString() +
+                "&size=" +
+                arrPerPage.toString()
+            )
+            .then((response) => response.data)
+            .then((data) => (
+                doOnRender(data)
+            ));
     };
 
     return(
@@ -233,7 +242,7 @@ export default function Searchpage(){
                                 <option value="Severna Amerika">Severna Amerika</option>
                                 <option value="Juzna Amerika">Juzna Amerika</option>
                                 <option value="Australija i Okeanija">Australija i Okeanija</option>
-                                <option selected value="">...</option>
+                                <option defaultValue={""} value="">...</option>
                             </select>
                             </div>
                             <div className='col-md-4 form-group'>
@@ -245,7 +254,7 @@ export default function Searchpage(){
                                 <option value="Krstarenje">Krstarenje</option>
                                 <option value="Samostalni prevoz">Samostalni prevoz</option>
                                 <option value="Voz">Voz</option>
-                                <option selected value="">...</option>
+                                <option defaultValue={""}  value="">...</option>
                             </select>
                             </div>
                         </div>
@@ -255,11 +264,11 @@ export default function Searchpage(){
                         <div className='row justify-content-center text-center'>
                             <div className='col-md-4 form-group '>
                             <label htmlFor="startDate">Od:</label>
-                            <input id="startDate" class="form-control" type="date" name='startdate' value={search.startdate}  onChange={updateStartdate}/>
+                            <input id="startDate" className="form-control" type="date" name='startdate' value={search.startdate}  onChange={updateStartdate}/>
                             </div>
                             <div className='col-md-4 form-group'>
                             <label htmlFor="endDate">Do:</label>
-                            <input id="endDate" class="form-control" type="date" name='enddate' value={search.enddate} onChange={updateEnddate}/>
+                            <input id="endDate" className="form-control" type="date" name='enddate' value={search.enddate} onChange={updateEnddate}/>
                             </div>
                         </div>
                         <div className='row justify-content-around m-3 p-3'>
@@ -276,11 +285,10 @@ export default function Searchpage(){
         </div>
         <div className="container my-2" style={{border: 'solid',borderColor:'navy',borderRadius:'20px'}}>
             <div className="row row-cols-1 row-cols-md-3 g-4 my-2 justify-content-center">
-                {arrangaments && arrangaments.map((item) => (
-                    <Cardlist name={item.name}  days='3' price='105' transport={item.transportation} />
+                {arrangaments && arrangaments.map((item,index) => (
+                    <Cardlist name={item.name}  startDate={item.startDate} endDate={item.endDate} price={item.price} transport={item.transportation} id={item.id} key={index}/>
                 ))}
             </div>
-            {/*{arrangaments.length>0?*/}
                 <div className='row align-items-center justify-content-around my-2'>
                     <div className='col-md-5'>
                     Strana {currentPage} od {totalPages}
@@ -288,12 +296,11 @@ export default function Searchpage(){
                     <div className='col-md-5 '>
                         <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} onClick={firstPage}>Prva </button>
                         <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} onClick={prevPage}>Predhodna</button>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} >{currentPage}</button>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} onClick={nextPage}>Sledeca</button>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} onClick={lastPage}>Poslednja</button>
+                        <button className='btn btn-outline-info' type='button' disabled={true} >{currentPage}</button>
+                        <button className='btn btn-outline-info' type='button' disabled={currentPage === totalPages ? true : false} onClick={nextPage}>Sledeca</button>
+                        <button className='btn btn-outline-info' type='button' disabled={currentPage === totalPages ? true : false} onClick={lastPage}>Poslednja</button>
                     </div>
                 </div>
-            {/*}:null}*/}
         </div>
         </>
     );

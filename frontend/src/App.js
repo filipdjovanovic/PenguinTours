@@ -41,7 +41,7 @@ function App() {
           <Route path='contacts' element={<Contactspage />} />
           <Route path='search' element={<Searchpage />} />
           <Route path='login' element={<Loginpage />} />
-          <Route path='arrangamentview' element={<Arrview />} />
+          <Route path='arrangamentview/:id' element={<Arrview />} />
         </Route>
         <Route path='/admin' element={<Adminlayout />}>
           <Route index element={<Adminpage />} />
@@ -49,7 +49,7 @@ function App() {
           <Route path='contacts' element={<Contactspage />} />
           <Route path='search' element={<Searchpage />} />
           <Route path='login' element={<Loginpage />} />
-          <Route path='arrangamentview' element={<Arrview />} />
+          <Route path='arrangamentview/:id' element={<Arrview />} />
         </Route>
       </Routes>
     </Router>

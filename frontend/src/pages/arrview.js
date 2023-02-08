@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Accomodationview from "../components/accomodationview";
-import data from '../fails/proba.json'
 import Programview from "../components/programview";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 
-export default function Arrview(props){
+export default function Arrview(){
     const [arrangament,setArrangament]=useState([])
     const [activeTab, setActiveTab] = useState("tab1");
+
+    const {id}= useParams();
 
     const handleTab1 = () => {
         setActiveTab("tab1");
@@ -15,25 +18,26 @@ export default function Arrview(props){
         setActiveTab("tab2");
     };
 
-    /*useEffect(()=>{
-        fetch("http://localhost:8080/arrangement/view")
-        .then(res=>res.json())
-        .then((result)=>{
-            setArrangament(result);
-        })
-    },[])*/
+    useEffect(() => {
+        const fetchData = async () => {
+          const result = await axios.get("http://localhost:8080/arrangements/get?id=" + id);
+          setArrangament(result.data);
+        };
+    
+        fetchData();
+    }, [id]);
 
     return(
         
         <div className="container">
             <div className="row justify-content-center mt-5">
                 <div className="col-md-4 text-center">
-                <h3>{data.name}</h3>
+                <h3>{arrangament.name}</h3>
                 </div>
             </div>
             <div className="row justify-content-center py-5" >
                 <div className="col-md-8" >
-                    <div className="text-break">{data.remark}</div>
+                    <div className="text-break">{arrangament.remark}</div>
                 </div>
             </div>
             <div className="row my-5 p-2 justify-content-center" style={{backgroundColor:'floralwhite'}}>
@@ -42,7 +46,7 @@ export default function Arrview(props){
                         Tip prevoza:
                     </div>
                     <div className="row justify-content-center">
-                        {data.transportation}
+                        {arrangament.transportation}
                     </div>
                 </div>
                 <div className="col-md-4">
@@ -50,7 +54,7 @@ export default function Arrview(props){
                         Cena po ocobi:
                     </div>
                     <div className="row justify-content-center">
-                        {data.price}€
+                        {arrangament.price}€
                     </div>
                 </div>
                 <div className="col-md-4">
@@ -58,7 +62,7 @@ export default function Arrview(props){
                         Status:
                     </div>
                     <div className="row justify-content-center">
-                        {data.status}
+                        {arrangament.status}
                     </div>
                 </div>
             </div>
@@ -67,17 +71,17 @@ export default function Arrview(props){
                     <li className="nav-item">
                         <a className={activeTab === "tab1" ? "nav-link active" : "nav-link"} onClick={handleTab1}>Smestaj</a>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                         <a className={activeTab === "tab2" ? "nav-link active" : "nav-link"} onClick={handleTab2}>Program putovanja</a>
                     </li>
                 </ul>
                 <div className="outlet">
                 {activeTab === "tab1" ? <div className="row my-3 p-2">
-                    {data.accomodations.map((accomodation,index)=>(
+                    {arrangament.accomodations && arrangament.accomodations.map((accomodation,index)=>(
                         <Accomodationview view={accomodation} key={index}/>
                     ))}
                     </div> : <div className="row my-3 p-2">
-                        {data.programs.map((program,index)=>(
+                        {arrangament.programs.map((program,index)=>(
                         <Programview view={program} key={index} day={index+1}/>
                     ))} 
                     </div>
