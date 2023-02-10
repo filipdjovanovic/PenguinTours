@@ -11,6 +11,7 @@ import Navheaderad from './components/headerad';
 import Adminpage from './pages/adminpage';
 import Footer from './components/footer';
 import Arrview from './pages/arrview';
+import Updatearr from './pages/updatearr';
 
 function Userlayout(){
   return(
@@ -49,7 +50,8 @@ function App() {
           <Route path='contacts' element={<Contactspage />} />
           <Route path='search' element={<Searchpage />} />
           <Route path='login' element={<Loginpage />} />
-          <Route path='arrangamentview/:id' element={<Arrview />} />
+          <Route path='search/arrangamentview/:id' element={<Arrview />} />
+          <Route path='arrangamentupdate/:id' element={<Updatearr />} />
         </Route>
       </Routes>
     </Router>

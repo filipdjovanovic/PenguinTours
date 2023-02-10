@@ -46,7 +46,7 @@ export default function Loginpage(){
                             </div>
                             <div className="form-group form-check">
                                 <input className="form-check-input" type="checkbox" id="check"></input>
-                                <label className="form-check-label" for="check">Zapamti mi podatke</label>
+                                <label className="form-check-label" htmlFor="check">Zapamti mi podatke</label>
                             </div>
                             <button className="btn btn-primary w-100" type="submit">PRIJAVI SE!</button>
                         </form>

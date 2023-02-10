@@ -13,12 +13,10 @@ export default function Searchpage(){
         startdate:"",
         enddate:"",
     })
-    const [arrangaments,setArrangaments]=useState([]);
-    const [currentPage,setCurrentPage]=useState(1);
-    const [arrPerPage,setArrPerPage]=useState(1);
-    const [sortDir,setSortDir]=useState("asc");
+    const [arr,setArr] = useState([]);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(50);
     const [totalPages,setTotalPages]=useState(0);
-    const [totalElements,setTotalElements]=useState(0);
 
 
     const updateName=(e)=>{
@@ -57,102 +55,75 @@ export default function Searchpage(){
         })
     }
 
-    const doOnRender=(dat)=>{
-        setArrangaments(dat.content);
-        setTotalPages(dat.totalPages);
-        setTotalElements(dat.totalElements);
-        setCurrentPage(dat.number + 1);
+    const doOnRender=(data)=>{
+        setArr(data.content);
+        setTotalPages(data.totalPages);
     };
-
-    const findAllArr=()=>{
-        axios.get("http://localhost:8080/arrangements/all?page="+(currentPage-1).toString()+"&size="+arrPerPage.toString())
-            .then((response) => response.data)
-            .then((data) => (
-                doOnRender(data)
-            ))
-            /*.catch((error) => {
-                console.log(error);
-                /*localStorage.removeItem("jwtToken");*/
-                /*this.props.history.push("/");
-            });*/
-    }
-
-    const sortData = () => {
-        setTimeout(() => {
-          sortDir === "asc"
-            ? setSortDir("desc")
-            : setSortDir("asc");
-          findAllArr(currentPage);
-        }, 500);
-    };
-
-    useEffect(()=>{
-        if(checkSearch){
-            searchData()
-        }else{
-            findAllArr();
-        }
-        findAllArr();
-    },[])
 
     const checkSearch=()=>{
-        let check=(search.name || search.city || search.country || search.continent || search.transportation || search.startdate || search.enddate);
+        let check=(search.name !== "" || search.city !== "" || search.country !== ""|| search.continent !== ""|| search.transportation !== ""|| search.startdate !== ""|| search.enddate!== "");
+    
         if (check) {
+            console.log("usao u checkSearch true");
             return true;
         } else {
+            console.log("usao u checkSearch false");
             return false;
         }
     }
-    
-    const firstPage = () => {
-        if (currentPage > firstPage) {
-            if (checkSearch) {
-                setCurrentPage(1)
-                searchData();
-            } else {
-                setCurrentPage(1);
-                findAllArr();
-            }
-        }
-    };
-    
-    const prevPage = () => {
-        if (currentPage > 1) {
-            if (checkSearch) {
-                setCurrentPage(currentPage-1);
-                searchData();
-            } else {
-                setCurrentPage(currentPage - 1);
-                findAllArr();
-            }
-        }
+
+    const getArr=()=>{
+        var x = `http://localhost:8080/arrangements/all?page=${page}&size=${size}`;
+        axios.get(x)
+            .then((response) => response.data)
+            .then((data) => (
+                doOnRender(data)
+            ));
     };
 
-    const lastPage = () => {
-    let condition = totalPages;
-    if (currentPage < condition) {
-        if (checkSearch) {
-            setCurrentPage(condition);
-            searchData();
-        } else {
-            setCurrentPage(condition);
-            findAllArr();
-        }
-    }
+    const getSearch=()=>{
+        var x = `http://localhost:8080/arrangements/get?`+
+            (search.name?"name="+search.name+"&":"") +
+            (search.city?"city="+search.city+"&":"") +
+            (search.country?"country="+search.country+"&":"") +
+            (search.continent?"continent="+search.continent+"&":"") +
+            (search.transportation?"transportation="+search.transportation+"&":"") +
+            (search.startdate?"startDate="+search.startdate+"&":"") +
+            (search.enddate?"endDate="+search.enddate+"&":"") +
+            `page=${page}&size=${size}`;
+        axios.get(x)
+            .then((response) => response.data)
+            .then((data) => (
+                doOnRender(data)
+            ));
     };
-    
-    const nextPage = () => {
-    if (currentPage < totalPages) {
-        if (checkSearch) {
-            setCurrentPage(currentPage + 1);
-            searchData();
-        } else {
-            setCurrentPage(currentPage + 1);
-            findAllArr(currentPage + 1);
-        }
+    const onSearch=()=>{
+        getSearch()
     }
-    };
 
+    React.useEffect(() => {
+        /*if (checkSearch()){*/
+            getSearch()
+        /*}else{
+            getArr()
+        }*/
+    }, [page]);
+
+    const firstPage=()=>{
+        setPage(0)
+    }
+    const lastPage=()=>{
+        setPage(totalPages-1)
+        
+    }
+    const prevPage=()=>{
+        setPage(page-1)
+        
+    }
+    const nextPage=()=>{
+        setPage(page+1)
+    }
+    
     const cancelSearch = () => {
         setSearch({ name:"",
                     city:"",
@@ -162,10 +133,30 @@ export default function Searchpage(){
                     startdate:"",
                     enddate:"",
                 });
-        findAllArr();
+        getArr();
     };
+/*  
+   
+    const sortData = () => {
+        setTimeout(() => {
+          sortDir === "asc"
+            ? setSortDir("desc")
+            : setSortDir("asc");
+          findAllArr(currentPage);
+        }, 500);
+    };
+
+    const checkSearch=()=>{
+        let check=(search.name !== "" || search.city !== "" || search.country !== ""|| search.continent !== ""|| search.transportation !== ""|| search.startdate !== ""|| search.enddate!== "");
+        if (check) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     
-    const searchData = () => {
+    const searchData = (page) => {
         axios.get("http://localhost:8080/arrangement/get" +
                 (search.name?"?name="+search.name+"&":"") +
                 (search.city?"?city="+search.city+"&":"") +
@@ -175,7 +166,7 @@ export default function Searchpage(){
                 (search.startdate?"?startDate="+search.startdate+"&":"") +
                 (search.enddate?"?endDate="+search.enddate:"") +
                 "?page=" +
-                (currentPage-1).toString() +
+                (page-1).toString() +
                 "&size=" +
                 arrPerPage.toString()
             )
@@ -183,7 +174,7 @@ export default function Searchpage(){
             .then((data) => (
                 doOnRender(data)
             ));
-    };
+    };*/
 
     return(
         <>
@@ -273,10 +264,11 @@ export default function Searchpage(){
                         </div>
                         <div className='row justify-content-around m-3 p-3'>
                             <div className='col-md-1'>
-                                <button className='btn btn-outline-primary' type='button' onClick={searchData}>Pretrazi</button>
+                            <button className='btn btn-outline-primary' type='button' onClick={onSearch}>Pretrazi</button>
                             </div>
                             <div className='col-md-1'>
-                                <button className='btn btn-outline-danger' type='button' onClick={cancelSearch}>Pretrazi</button>
+                                <button className='btn btn-outline-danger' type='button' onClick={cancelSearch}>
+                                Ponisti</button>
                             </div>
                         </div>
                     </form>
@@ -285,22 +277,33 @@ export default function Searchpage(){
         </div>
         <div className="container my-2" style={{border: 'solid',borderColor:'navy',borderRadius:'20px'}}>
             <div className="row row-cols-1 row-cols-md-3 g-4 my-2 justify-content-center">
-                {arrangaments && arrangaments.map((item,index) => (
+                {arr && arr.map((item,index) => (
                     <Cardlist name={item.name}  startDate={item.startDate} endDate={item.endDate} price={item.price} transport={item.transportation} id={item.id} key={index}/>
                 ))}
             </div>
-                <div className='row align-items-center justify-content-around my-2'>
-                    <div className='col-md-5'>
-                    Strana {currentPage} od {totalPages}
-                    </div>
-                    <div className='col-md-5 '>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} onClick={firstPage}>Prva </button>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === 1 ? true : false} onClick={prevPage}>Predhodna</button>
-                        <button className='btn btn-outline-info' type='button' disabled={true} >{currentPage}</button>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === totalPages ? true : false} onClick={nextPage}>Sledeca</button>
-                        <button className='btn btn-outline-info' type='button' disabled={currentPage === totalPages ? true : false} onClick={lastPage}>Poslednja</button>
-                    </div>
+            <div className='row align-items-center justify-content-around my-2'>
+                <div className='col-md-4'>
+                Strana {page+1} od {totalPages}
                 </div>
+                <div className='col-md-6 '>
+                    <button className='btn btn-outline-info' type='button' disabled={page === 0 ? true : false} onClick={firstPage}>Prva </button>
+                    <button className='btn btn-outline-info' type='button' disabled={page === 0 ? true : false} onClick={prevPage}>Predhodna</button>
+                    <button className='btn btn-outline-info' type='button' disabled={true} >{page+1}</button>
+                    <button className='btn btn-outline-info' type='button' disabled={page === totalPages-1 ? true : false} onClick={nextPage}>Sledeca</button>
+                    <button className='btn btn-outline-info' type='button' disabled={page === totalPages-1 ? true : false} onClick={lastPage}>Poslednja</button>
+                </div>
+                <div className='col-md-2'>
+                    <label htmlFor="size" className="form-label mx-2">Po strani:</label>
+                    
+                    <select value={size} name="size" onChange={(e)=>setSize(e.target.value)}>
+                        <option defaultValue="50"  value="50">50</option>
+                        <option value="25">25</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        
+                    </select>
+                </div>
+            </div>
         </div>
         </>
     );

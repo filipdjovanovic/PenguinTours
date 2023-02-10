@@ -7,7 +7,7 @@ export default function Cards(props){
         <>
         <div className="row justify-content-center">
             <div className="col-md-8 offset-md-2 mx-5 py-4 text-center">
-                <h1 classname="text-center text-break" style={{color:'navy'}} >Poslednja mesta!</h1>
+                <h1 className="text-center text-break" style={{color:'navy'}} >Poslednja mesta!</h1>
             </div>
         </div>
         <div style={{borderTop:'solid',borderBottom:'solid', borderColor:'darkorange'}}>

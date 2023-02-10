@@ -1,16 +1,43 @@
 import React, { useState } from "react";
 import Accinput from "./accomodationinput";
+import Programinput from "./programinput";
+import axios from "axios";
 
 export default function Addarrangement(){
     const [arrangement,setArrangement]=useState({
         name:"",
         price:0,
         transportation:"",
-        status:"D",
+        status:"Dostupno",
         remark:"",
         accomodations:[],
         programs:[]
     });
+
+    const handleClick = () => {
+        if (!Object.keys(arrangement).length) {
+            console.error('State cannot be empty');
+            return;
+          }
+        
+        arrangement.programs.forEach(myFunction);
+
+        function myFunction(item) {
+            item.date = new Date((item.date)).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+              });
+          }
+        
+        axios.post('http://localhost:8080/arrangements/add', arrangement)
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };
 
     const [date,setDate]=useState({
         startdate:"",
@@ -34,11 +61,13 @@ export default function Addarrangement(){
             return{...previousData,name:(e.target.value)}
         })
     }
+    
     const updatPrice=(e)=>{
         setArrangement(previousData=>{
-            return{...previousData,price:(e.target.value)}
+            return{...previousData,price:(Number(e.target.value))   }
         })
     }
+    
     const updateTransportation=(e)=>{
         setArrangement(previousData=>{
             return{...previousData,transportation:(e.target.value)}
@@ -65,13 +94,20 @@ export default function Addarrangement(){
           ...prevState,
           accomodations: prevState.accomodations.filter((i) => i !== item),
         }));
-      };
-   
-    function updatePrograms(data) {
-        setArrangement(previousData => {
-            return { ...previousData, programs: (oldArray => [...oldArray, data]) };
-        });
+    };
+    const handleUpdatePrograms=(newArray)=>{
+        setArrangement((previousData) => (
+             { ...previousData, programs:newArray}
+        ));
     }
+
+    const removeFromArrayProg = (item) => {
+        setArrangement((prevState) => ({
+          ...prevState,
+          programs: prevState.programs.filter((i) => i !== item),
+        }));
+    };
+   
     return(
         <div className="conteiner">
             <form className="row ">
@@ -102,17 +138,17 @@ export default function Addarrangement(){
                         <option value="Krstarenje">Krstarenje</option>
                         <option value="Samostalni prevoz">Samostalni prevoz</option>
                         <option value="Voz">Voz</option>
-                        <option selected value="">...</option>
+                        <option defaultValue="" value="">...</option>
                     </select>
                     <div className="row justify-content-center">
                         <label className="form-label my-1" >Datum:</label>
                         <div className="col-md-6">
                             <label htmlFor="startDate">Od:</label>
-                            <input id="startDate" class="form-control" type="date" name='startdate' value={date.startdate}  onChange={updateStartdate} required/>
+                            <input id="startDate" className="form-control" type="date" name='startdate' value={date.startdate}  onChange={updateStartdate} required/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="endDate">Do:</label>
-                            <input id="endDate" class="form-control" type="date" name='enddate' value={date.enddate} onChange={updateEnddate} required/>
+                            <input id="endDate" className="form-control" type="date" name='enddate' value={date.enddate} onChange={updateEnddate} required/>
                         </div>
                     </div>
                 </div>
@@ -123,6 +159,14 @@ export default function Addarrangement(){
                 </div>
                 <div className="row">
                     <Accinput sendAcc={handleUpdateAccomodations} accarr={arrangement} removeFromArray={removeFromArray}/>
+                </div>
+                <div className="row">
+                    <Programinput sendProgram={handleUpdatePrograms} progarr={arrangement} removeFromArray={removeFromArrayProg}/>
+                </div>
+                <div className="row justify-cnontent-center my-3">
+                    <div className="col-md-4 offset-md-4">
+                        <button className="btn btn-primary" type="button" onClick={handleClick}  >Dodaj aranzman</button>
+                    </div>
                 </div>
             </form>
         </div>
