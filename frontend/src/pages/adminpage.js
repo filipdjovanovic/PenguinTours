@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Addarrangement from "../components/addarrangement";
+import Updatedelete from "../components/updatedelete";
 
 export default function Adminpage(){
     const [activeTab, setActiveTab] = useState("tab1");
@@ -30,8 +31,8 @@ export default function Adminpage(){
                         <li className="nav-item">
                             <a className={activeTab === "tab1" ? "nav-link active" : "nav-link"} onClick={handleTab1}>Dodaj aranzman</a>
                         </li>
-                        <li class="nav-item">
-                            <a className={activeTab === "tab2" ? "nav-link active" : "nav-link"} onClick={handleTab2}>Azuriraj aranzman</a>
+                        <li className="nav-item">
+                            <a className={activeTab === "tab2" ? "nav-link active" : "nav-link"} onClick={handleTab2}>Azuriraj i obrisi aranzman</a>
                         </li>
                         <li className="nav-item">
                             <a className={activeTab === "tab3" ? "nav-link active" : "nav-link"} onClick={handleTab3}>Obrisi aranzman</a>
@@ -43,7 +44,7 @@ export default function Adminpage(){
                     <div className="outlet">
                     {activeTab === "tab1" ? <div className="row my-3 p-2">
                                 <Addarrangement /></div>  
-                                :(activeTab==="tab2"?<div className="row my-3 p-2">B</div>
+                                :(activeTab==="tab2"?<div className="row my-3 p-2"><Updatedelete /></div>
                                 :(activeTab==="tab3"?<div className="row my-3 p-2">C</div>
                                 :<div className="row my-3 p-2">D</div>))
                     }

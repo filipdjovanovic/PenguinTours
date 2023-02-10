@@ -113,17 +113,22 @@ export default function Accinput(props){
         })
     }
     const updateCity=(e)=>{
-        setAccomodation(previousData=>({...previousData,location:{...previousData,city:(e.target.value)}}));
+        setAccomodation(previousData=>({...previousData,location:{...previousData.location,city:(e.target.value)}}));
     }
     const updateCountry=(e)=>{
-        setAccomodation(previousData=>({...previousData,location:{...previousData,country:(e.target.value)}}));
+        setAccomodation(previousData=>({...previousData,location:{...previousData.location,country:(e.target.value)}}));
     }
     const updateContinent=(e)=>{
-        setAccomodation(previousData=>({...previousData,location:{...previousData,continent:(e.target.value)}}));
+        setAccomodation(previousData=>({...previousData,location:{...previousData.location,continent:(e.target.value)}}));
     }
     return(
         <>
         <div className="row mt-5 mb-2 p-2" style={{borderTop:"solid"}}>
+            <div className="row justify-content-center">
+                <div className="col-md-5 text-center">
+                    <h4>Unesi smestaje</h4>
+                </div>
+            </div>
             <div className="col-md-5">
                 <label className="form-label my-1" htmlFor="name">Naziv smestajnog objekta:</label>
                 <input className="form-control" 
@@ -143,7 +148,7 @@ export default function Accinput(props){
                     style={{borderRadius:'20px'}}></input>
                 <label htmlFor="type" className="form-label my-1">Tip smestaja:</label>
                 <br></br>
-                <select className="text-wrap" value={accomodation.type} id="type" name="type" onChange={updateType} style={{borderRadius:'20px',height:"30px"}} required>
+                <select className="text-wrap text-center" value={accomodation.type} id="type" name="type" onChange={updateType} style={{borderRadius:'20px',height:"30px"}} required>
                     <option value="Hotelski">Hotelski</option>
                     <option value="Bungalov">Bungalov</option>
                     <option defaultValue={""} value="">...</option>
@@ -190,6 +195,45 @@ export default function Accinput(props){
                             <option value={false}>Ne</option>
                         </select>
                     </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <label className="form-label my-1" htmlFor="city">Grad:</label>
+                        <input className="form-control" 
+                            type="text" 
+                            id="city" 
+                            name="city"
+                            value={accomodation.location.city}
+                            onChange={updateCity}
+                            style={{borderRadius:'20px'}}></input>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <label className="form-label my-1" htmlFor="country">Drzava:</label>
+                        <input className="form-control" 
+                            type="text" 
+                            id="country" 
+                            name="country"
+                            value={accomodation.location.country}
+                            onChange={updateCountry}
+                            style={{borderRadius:'20px'}}></input>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <label htmlFor="continent" className="form-label">Kontinent:</label>
+                        <br></br>
+                        <select value={accomodation.location.continent} className="text-wrap text-center" name="continent" onChange={updateContinent} style={{borderRadius:'20px',height:"30px",width:"200px"}}>
+                            <option value="Evropa">Evropa</option>
+                            <option value="Azija">Azija</option>
+                            <option value="Afrika">Afrika</option>
+                            <option value="Severna Amerika">Severna Amerika</option>
+                            <option value="Juzna Amerika">Juzna Amerika</option>
+                            <option value="Australija i Okeanija">Australija i Okeanija</option>
+                            <option defaultValue={""} value="">...</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -247,7 +291,7 @@ export default function Accinput(props){
         <div className="row">
             {props.accarr.accomodations && props.accarr.accomodations.map((item,)=>(
                 <div key={item.name}>
-                {item.name} <button onClick={() => handleRemove(item)}>Remove</button>
+                {item.name} <button onClick={() => handleRemove(item)}>Ukloni</button>
                 </div>
             ))}
         </div>
