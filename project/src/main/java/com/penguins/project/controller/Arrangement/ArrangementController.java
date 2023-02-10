@@ -67,6 +67,7 @@ public class ArrangementController {
                                                    @RequestParam(required = false) String city,
                                                    @RequestParam(required = false) String country,
                                                    @RequestParam(required = false) String continent,
+                                                   @RequestParam(required = false) String transportation,
                                                    @RequestParam(required = false) Date startDate,
                                                    @RequestParam(required = false) Date endDate){
 
@@ -74,7 +75,7 @@ public class ArrangementController {
         if (page == null) page = 0;
         if (size == null) size = 50;
         Pageable pageable = PageRequest.of(page,size);
-        return arrangementService.getArrangements(name,city,country,continent,startDate,endDate,pageable);
+        return arrangementService.getArrangements(name,city,country,continent,transportation,startDate,endDate,pageable);
 
     }
 

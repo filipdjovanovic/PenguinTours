@@ -4,15 +4,18 @@ package com.penguins.project.model.User;
 import com.penguins.project.model.Role.Role;
 import jakarta.persistence.*;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 @Entity
 @Table(name = "users")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class UserEntity {
 

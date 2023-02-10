@@ -272,29 +272,40 @@ public class ArrangementService {
 
 
     @Transactional
-    public Page<ArrangementShortW> getArrangements(String name, String city,String country,String continent,Date startDate,Date endDate, Pageable pageable) {
+    public Page<ArrangementShortW> getArrangements(String name, String city,String country,String continent,String transportation,Date startDate,Date endDate, Pageable pageable) {
 
-        Page<ArrangementShortW> page = this.getAllArrangements(pageable);
+        Page<ArrangementShortW> page = this.getAllArrangements(Pageable.unpaged());
         List<ArrangementShortW> allArrangements = page.getContent();
 
         if (name != null) {
             allArrangements = allArrangements
                     .stream()
-                    .filter(arrangementShortW -> arrangementShortW.getName().equals(name))
+                    .filter(arrangementShortW -> arrangementShortW.getName().contains(name))
                     .toList();
         }
-        if (startDate != null) {
+        if (transportation != null) {
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementShortW.getTransportation().equals(transportation))
+                    .toList();
+        }
+        if (startDate != null && endDate != null){
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementShortW.getStartDate().compareTo(startDate)>=0)
+                    .toList();
+            allArrangements = allArrangements
+                    .stream()
+                    .filter(arrangementShortW -> arrangementShortW.getEndDate().compareTo(endDate)<=0)
+                    .toList();
+        }
+        else if (startDate != null) {
             allArrangements = allArrangements
                     .stream()
                     .filter(arrangementShortW -> arrangementShortW.getStartDate().equals(startDate))
                     .toList();
         }
-        if (endDate != null) {
-            allArrangements = allArrangements
-                    .stream()
-                    .filter(arrangementShortW -> arrangementShortW.getEndDate().equals(endDate))
-                    .toList();
-        }
+
         if (city != null){
             allArrangements = allArrangements
                     .stream()
@@ -343,17 +354,18 @@ public class ArrangementService {
                                     .stream()
                                     .anyMatch(location -> location
                                             .getContinent()
-                                            .equals(country)
+                                            .equals(continent)
                                     )
                             )
                     )
                     .toList();
         }
-
+        final int start = (int)pageable.getOffset();
+        final int end = Math.min((start + pageable.getPageSize()), allArrangements.size());
         return new PageImpl<>(
-                allArrangements
+                allArrangements.subList(start,end)
                 ,pageable
-                ,page.getTotalElements());
+                ,allArrangements.size());
 
     }
 
