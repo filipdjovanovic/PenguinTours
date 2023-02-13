@@ -2,7 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Navheaderad(){
+
+    const clearStorage=()=>{
+        localStorage.setItem("token",null);
+        localStorage.setItem("role",null);
+    }
+
     return(
+        <>
         <div>
             <header style={{backgroundColor:'navy'}}>
                 <nav className="navbar navbar-expand-lg fixed-top sticky-top " >
@@ -26,12 +33,13 @@ export default function Navheaderad(){
                             </li>
                             
                             <li className="nav-item mx-1">
-                                <Link className="btn btn-outline-primary" type="button" to="/" style={{color: 'antiquewhite'}}>ODJAVI SE!</Link>
+                                <Link className="btn btn-outline-primary" type="button" to="/" onClick={clearStorage} style={{color: 'antiquewhite'}}>ODJAVI SE!</Link>
                             </li>
                         </ul>          
                     </div>
                 </nav>
             </header>  
         </div>
+        </>
     );
 }

@@ -5,7 +5,7 @@ export default function Aboutuspage(){
         <div className="container">
             <div className="row">
                 <div className="col-md-4 offset-md-4">
-                    <h1 className="text-center"></h1>
+                    <h1 className="text-center">nesyo</h1>
 
                 </div>
             </div>

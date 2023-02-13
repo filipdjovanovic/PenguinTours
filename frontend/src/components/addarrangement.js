@@ -73,11 +73,7 @@ export default function Addarrangement(){
             return{...previousData,transportation:(e.target.value)}
         })
     }
-    const updateStatus=(e)=>{
-        setArrangement(previousData=>{
-            return{...previousData,status:(e.target.value)}
-        })
-    }
+
     const updateRemark=(e)=>{
         setArrangement(previousData=>{
             return{...previousData,remark:(e.target.value)}
@@ -132,25 +128,15 @@ export default function Addarrangement(){
                         required></input>
                     <label htmlFor="transportation" className="form-label my-1">Tip prevoza:</label>
                     <br></br>
-                    <select className="text-wrap" value={arrangement.transportation} name="transportation" onChange={updateTransportation} style={{borderRadius:'20px',height:"30px"}} required>
+                    <select className="text-wrap text-center" value={arrangement.transportation} name="transportation" onChange={updateTransportation} style={{borderRadius:'20px',height:"30px"}} required>
                         <option value="Avion">Avion</option>
                         <option value="Autobus">Autobus</option>
-                        <option value="Krstarenje">Krstarenje</option>
+                        <option value="Brod">Brod</option>
                         <option value="Samostalni prevoz">Samostalni prevoz</option>
                         <option value="Voz">Voz</option>
                         <option defaultValue="" value="">...</option>
                     </select>
-                    <div className="row justify-content-center">
-                        <label className="form-label my-1" >Datum:</label>
-                        <div className="col-md-6">
-                            <label htmlFor="startDate">Od:</label>
-                            <input id="startDate" className="form-control" type="date" name='startdate' value={date.startdate}  onChange={updateStartdate} required/>
-                        </div>
-                        <div className="col-md-6">
-                            <label htmlFor="endDate">Do:</label>
-                            <input id="endDate" className="form-control" type="date" name='enddate' value={date.enddate} onChange={updateEnddate} required/>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div className="col-md-5">
                     <label htmlFor="remark" className="form-label my-1">Komentar:</label>
@@ -163,9 +149,9 @@ export default function Addarrangement(){
                 <div className="row">
                     <Programinput sendProgram={handleUpdatePrograms} progarr={arrangement} removeFromArray={removeFromArrayProg}/>
                 </div>
-                <div className="row justify-cnontent-center my-3">
-                    <div className="col-md-4 offset-md-4">
-                        <button className="btn btn-primary" type="button" onClick={handleClick}  >Dodaj aranzman</button>
+                <div className="row justify-content-center my-3">
+                    <div className="col-md-4">
+                        <button className="btn btn-primary" type="submit" onClick={handleClick}  >Dodaj aranzman</button>
                     </div>
                 </div>
             </form>

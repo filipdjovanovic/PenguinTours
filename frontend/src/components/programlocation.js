@@ -4,8 +4,28 @@ export default function Programlocation(props){
     const [location,setLocation]=useState({
         city:"",
         country:"",
-        continent:""
+        continent:"",
+        picture:null
     });
+
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          };
+          fileReader.onerror = (error) => {
+            reject(error);
+          };
+        });
+    };
+
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        updatePicture(base64);
+    };
 
     const handleRemove = (item) => {
         props.removeFromArray(item);
@@ -20,14 +40,17 @@ export default function Programlocation(props){
     const updateContinent=(e)=>{
         setLocation(previousData=>({...previousData,continent:(e.target.value)}));
     };
+    const updatePicture=(item)=>{
+        setLocation(previousData=>({...previousData,picture:item}));
+    };
     const handleUpdate = () => {
         const updatedArray = [...props.program.locations, location];
         props.sendLocation(updatedArray);
         setLocation({
             city:"",
             country:"",
-            continent:""
-    
+            continent:"",
+            picture:null
       })};
     return(
         <>
@@ -68,6 +91,17 @@ export default function Programlocation(props){
                     <option value="Australija i Okeanija">Australija i Okeanija</option>
                     <option defaultValue={""} value="">...</option>
                 </select>
+            </div>
+        </div>
+        <div className="row my-1">
+            <div className="col-md-12">
+                <label htmlFor="picture" className="form-label">Slika Lokacije:</label>
+                <br></br>
+                <input type="file"
+                    id="picture"
+                    accept=".png,.jpg,.jpeg"
+                    onChange={(e) => handleFileUpload(e)}
+                />
             </div>
         </div>
         <div className="row justify-cnontent-center my-3">

@@ -11,7 +11,11 @@ import Navheaderad from './components/headerad';
 import Adminpage from './pages/adminpage';
 import Footer from './components/footer';
 import Arrview from './pages/arrview';
-import Updatearr from './pages/updatearr';
+import Updatearr from './components/updatearr';
+import Arrapply from './components/arrapply';
+import ProtectedRoutes from './routes.js/protected';
+import ProtectedRoutesS from './routes.js/protectedstaff';
+import Staffpage from './pages/staffpage';
 
 function Userlayout(){
   return(
@@ -32,8 +36,19 @@ function Adminlayout(){
   );
 }
 
+function Stafflayout(){
+  return(
+    <>
+    <Navheaderad />
+    <Outlet />
+    <Footer />
+    </>
+  );
+}
+
 function App() {
   return (
+    <>
     <Router>
       <Routes>
         <Route  path='/' element={<Userlayout />}>
@@ -42,19 +57,38 @@ function App() {
           <Route path='contacts' element={<Contactspage />} />
           <Route path='search' element={<Searchpage />} />
           <Route path='login' element={<Loginpage />} />
-          <Route path='arrangamentview/:id' element={<Arrview />} />
-        </Route>
-        <Route path='/admin' element={<Adminlayout />}>
-          <Route index element={<Adminpage />} />
-          <Route path='aboutus' element={<Aboutuspage />} />
-          <Route path='contacts' element={<Contactspage />} />
-          <Route path='search' element={<Searchpage />} />
-          <Route path='login' element={<Loginpage />} />
           <Route path='search/arrangamentview/:id' element={<Arrview />} />
-          <Route path='arrangamentupdate/:id' element={<Updatearr />} />
+          <Route path='arrangamentview/:id' element={<Arrview />} />
+          <Route path='arrangamentview/:id/arrangament/apply/:id' element={<Arrapply />} />
+          <Route path='search/arrangamentview/:id/arrangament/apply/:id' element={<Arrapply />} />
+        </Route>
+        <Route  element={<ProtectedRoutes />}>
+          <Route path='/admin' element={<Adminlayout />}>
+            <Route index element={<Adminpage />} />
+            <Route path='aboutus' element={<Aboutuspage />} />
+            <Route path='contacts' element={<Contactspage />} />
+            <Route path='search' element={<Searchpage />} />
+            <Route path='login' element={<Loginpage />} />
+            <Route path='search/arrangamentview/:id' element={<Arrview />} />
+            <Route path='arrangamentupdate/:id' element={<Updatearr />} />
+            <Route path='search/arrangamentview/:id/arrangament/apply/:id' element={<Arrapply />} />
+          </Route>  
+        </Route>
+        <Route   element={<ProtectedRoutesS />}>
+          <Route path='/staff' element={<Stafflayout />}>
+            <Route index element={<Staffpage />} />
+            <Route path='aboutus' element={<Aboutuspage />} />
+            <Route path='contacts' element={<Contactspage />} />
+            <Route path='search' element={<Searchpage />} />
+            <Route path='login' element={<Loginpage />} />
+            <Route path='search/arrangamentview/:id' element={<Arrview />} />
+            <Route path='arrangamentupdate/:id' element={<Updatearr />} />
+            <Route path='search/arrangamentview/:id/arrangament/apply/:id' element={<Arrapply />} />
+          </Route>
         </Route>
       </Routes>
-    </Router>
+    </Router> 
+    </>
   );
 }
 

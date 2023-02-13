@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer(){
     return(
-        <div className="text-center text-black sticky-bottom" style={{backgroundColor:'gray'}}>
+        <div className="text-center text-black sticky-bottom" style={{backgroundColor:'lightblue'}}>
         <div className="container py-2">
           <div className="row">
             <div className="col-md-3">

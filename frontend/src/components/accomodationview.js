@@ -1,5 +1,5 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
 import '../css/mystyle.css'
 
@@ -21,7 +21,12 @@ export default function Accomodationview(props){
                     </div>
                     <div className="row p-3">
                         <div className="col-md-12">
-                            <strong>Tip smestaja:</strong> {props.view.type}
+                            <strong>Tip smestaja u sobi:</strong> {props.view.type}
+                        </div>
+                    </div>
+                    <div className="row p-3">
+                        <div className="col-md-12">
+                            <strong>Kategorija smestaja:</strong> mora broj ok 1 do 5
                         </div>
                     </div>
                     <div className="row p-3">
@@ -49,98 +54,30 @@ export default function Accomodationview(props){
                             <strong>Internet:</strong> {(props.view.internet)?<span>DA!</span>:<span>NE!</span>}
                         </div>
                     </div>
-                    <div className="row p-3">
-                        <div className="col-md-12">
-                            <strong>Lokacija:</strong> {props.view.location.city},{props.view.location.country}
-                        </div>
-                    </div>
                 </div>
                 <div className="col-md-6">
                     <Carousel >
                         <div>
-                            <img src={require('../slike/pozadina1.jpg')} alt='' style={{width:'100%', height:'100%',objectFit:'cover'}}/>
+                            <img src={((props.view.picture1===null)?"":"data:image/jpeg;base64,"+props.view.picture1)} alt='' style={{width:'100%', height:'100%',objectFit:'cover'}}/>
                         </div>
                         <div>
-                            <img src={require('../slike/ikonica.png')} alt='' />
+                            <img src={((props.view.picture2===null)?"":"data:image/jpeg;base64,"+props.view.picture2)} alt='' />
                         </div>
                         <div>
-                            <img src={require('../slike/favicon.png')} alt=''/>
+                            <img src={((props.view.picture3===null)?"":"data:image/jpeg;base64,"+props.view.picture3)} alt=''/>
+                        </div>
+                        <div>
+                            <img src={((props.view.picture4===null)?"":"data:image/jpeg;base64,"+props.view.picture4)} alt=''/>
+                        </div>
+                        <div>
+                            <img src={((props.view.picture5===null)?"":"data:image/jpeg;base64,"+props.view.picture5)} alt=''/>
+                        </div>
+                        <div>
+                            <img src={((props.view.picture6===null)?"":"data:image/jpeg;base64,"+props.view.picture6)} alt=''/>
                         </div>
                     </Carousel>
                 </div>
             </div>
-            
-            {/*
-            <div className="row justify-content-center py-3">
-                <div className="col-md-4 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Kategorija:
-                    </div>
-                    <div className="row justify-content-center">
-                        {props.view.category}
-                    </div>
-                </div>
-                <div className="col-md-4 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Tip smestaja:
-                    </div>
-                    <div className="row justify-content-center">
-                        {props.view.type}
-                    </div>
-                </div>
-            </div>
-            <div className="row justify-content-center py-3">
-                <div className="col-md-2 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        TV:
-                    </div>
-                    <div className="row justify-content-center text-center">
-                        {(props.view.tv)?<div>DA!</div>:<div>NE!</div>}
-                    </div>
-                </div>
-                <div className="col-md-2 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Sef:
-                    </div>
-                    <div className="row justify-content-center text-center">
-                        {(props.view.safe)?<div>DA!</div>:<div>NE!</div>}
-                    </div>
-                </div>
-                <div className="col-md-2 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Frizider:
-                    </div>
-                    <div className="row justify-content-center text-center">
-                        {(props.view.fridge)?<div>DA!</div>:<div>NE!</div>}
-                    </div>
-                </div>
-                <div className="col-md-2 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Klima:
-                    </div>
-                    <div className="row justify-content-center text-center">
-                        {(props.view.ac)?<div>DA!</div>:<div>NE!</div>}
-                    </div>
-                </div>
-                <div className="col-md-2 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Internet:
-                    </div>
-                    <div className="row justify-content-center text-center">
-                        {(props.view.internet)?<div>DA!</div>:<div>NE!</div>}
-                    </div>
-                </div>
-                <div className="row justify-content-center py-3">
-                    <div className="col-md-4 ">
-                    <div className="row justify-content-center mx-1" style={{backgroundColor:'white'}}>
-                        Lokacija:
-                    </div>
-                    <div className="row justify-content-center">
-                        {props.view.location.city},{props.view.location.country}
-                    </div>
-                </div>
-                </div>
-            </div>*/}
         </div>
         </>
 

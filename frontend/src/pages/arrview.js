@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Accomodationview from "../components/accomodationview";
 import Programview from "../components/programview";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export default function Arrview(){
@@ -34,6 +34,9 @@ export default function Arrview(){
                 <div className="col-md-4 text-center">
                 <h3>{arrangament.name}</h3>
                 </div>
+            </div>
+            <div className="row justify-content-center mt-5">
+                <img src={require("../slike/ikonica.png")}/*{(arrangament.bigPicture===""?"":arrangament.bigPicture)}*/ alt="Slika putovanja" style={{maxWidth:"500px",maxHeight:"400px"}}></img>
             </div>
             <div className="row justify-content-center py-5" >
                 <div className="col-md-8" >
@@ -69,13 +72,13 @@ export default function Arrview(){
             <div className="container">
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
-                        <a className={activeTab === "tab1" ? "nav-link active" : "nav-link"} onClick={handleTab1}>Smestaj</a>
+                        <button className={activeTab === "tab1" ? "nav-link active" : "nav-link"} onClick={handleTab1}>Smestaj</button>
                     </li>
                     <li className="nav-item">
-                        <a className={activeTab === "tab2" ? "nav-link active" : "nav-link"} onClick={handleTab2}>Program putovanja</a>
+                        <button className={activeTab === "tab2" ? "nav-link active" : "nav-link"} onClick={handleTab2}>Program putovanja</button>
                     </li>
                 </ul>
-                <div className="outlet">
+                <div>
                 {activeTab === "tab1" ? <div className="row my-3 p-2">
                     {arrangament.accomodations && arrangament.accomodations.map((accomodation,index)=>(
                         <Accomodationview view={accomodation} key={index}/>
@@ -86,6 +89,11 @@ export default function Arrview(){
                     ))} 
                     </div>
                 }
+                </div>
+            </div>
+            <div className="row justify-content-center my-3">
+                <div className="col-md-4 text-center">
+                    {arrangament.status==="Dostupno"?<Link className="btn btn-primary"  type="button" to={`arrangament/apply/${id}`} style={{width:"100%"}}>Prijavi se!</Link>:null}
                 </div>
             </div>
         </div>
