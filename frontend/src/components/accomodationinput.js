@@ -18,55 +18,41 @@ export default function Accinput(props){
         picture5:null,
         picture6:null
     });
-    /*
-    const [bytesmore,setBytes]=useState({
-        name:"Ivaneeee",
-        myFile: "",
-    });
-    
-    const [image,setImage]=useState("");
-    const handleFileUpload = async (e) => {
-        const file = e.target.files[0];
-        const base64 = await convertToBase64(file);
-        setBytes(previousData=>{
-            return{...previousData,myFile:base64}
-        })
-    };*/
 
     const handleFile1Upload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePiture1(base64);
+        updatePiture1(base64.slice(23));
     };
 
     const handleFile2Upload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePiture2(base64)
+        updatePiture2(base64.slice(23))
     };
 
     const handleFile3Upload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePiture3(base64)
+        updatePiture3(base64.slice(23))
     };
 
     const handleFile4Upload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePiture4(base64)
+        updatePiture4(base64.slice(23))
     };
 
     const handleFile5Upload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePiture5(base64)
+        updatePiture5(base64.slice(23))
     };
 
     const handleFile6Upload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePiture6(base64)
+        updatePiture6(base64.slice(23))
     };
 
     const handleUpdate = () => {
@@ -93,35 +79,7 @@ export default function Accinput(props){
     const handleRemove = (item) => {
         props.removeFromArray(item);
     };
-/*
-    const getImage=()=>{
-        const fetchData = async () => {
-        const result= await axios.get("http://localhost:8080/arrangements/image/get");
-        setImage("data:image/jpeg;base64,"+result.data.myFile);
-        console.log(result.data);
-        }
-        fetchData()
-    };
 
-    useEffect(()=>{
-        getImage()
-    },[]);
-
-    const url = "http://localhost:8080/arrangements/image/upload";
-    const createImage = (newImage) => axios.post(url, newImage);
-
-    const createPost = async (post) => {
-        try {
-          await createImage(post);
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
-
-    const handleSend = (e) => {
-        e.preventDefault();
-        createPost(bytesmore);
-    };*/
 
     const convertToBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -222,7 +180,7 @@ export default function Accinput(props){
                 </div>
             </div>
             <div className="col-md-5">
-                <label className="form-label my-1" htmlFor="name">Naziv smestajnog objekta:</label>
+                <label className="form-label my-1" htmlFor="name">Naziv smeštajnog objekta:</label>
                 <input className="form-control" 
                     type="text" 
                     id="name" 
@@ -230,7 +188,7 @@ export default function Accinput(props){
                     value={accomodation.name}
                     onChange={updateName}
                     style={{borderRadius:'20px'}}></input>
-                <label className="form-label my-1" htmlFor="category">Kategorija smestaja:</label>
+                <label className="form-label my-1" htmlFor="category">Kategorija smeštaja:</label>
                 <br></br>
                 <select className="text-wrap text-center" value={accomodation.category} id="category" name="category" onChange={updateCategory} style={{borderRadius:'20px',height:"30px",width:"50px"}} required>
                     <option value="1">1</option>
@@ -240,7 +198,7 @@ export default function Accinput(props){
                     <option defaultValue={"5"} value="5">5</option>
                 </select>
                 <br></br>
-                <label htmlFor="type" className="form-label my-1">Tip smestaja u sobi:</label>
+                <label htmlFor="type" className="form-label my-1">Tip smeštaja u sobi:</label>
                 <br></br>
                 <select className="text-wrap text-center" value={accomodation.type} id="type" name="type" onChange={updateType} style={{borderRadius:'20px',height:"30px"}} required>
                     <option value="1/1">1/1</option>
@@ -277,7 +235,7 @@ export default function Accinput(props){
                     </div>
                     <div className="row justify-content-around">
                         <div className="col-md-4">
-                            <label htmlFor="fridge" className="form-label my-1">Frizider:</label>
+                            <label htmlFor="fridge" className="form-label my-1">Frižider:</label>
                             <br></br>
                             <select className="text-wrap text-center" value={accomodation.fridge} id="fridge" name="fridge" onChange={updateFrifge} style={{borderRadius:'20px',height:"30px",width:"75px"}} required>
                                 <option defaultValue={true} value={true}>Da</option>
@@ -340,29 +298,22 @@ export default function Accinput(props){
                             onChange={(e) => handleFile6Upload(e)}
                         />
                     </div>
-                   {/* <div className="row justify-content-center p-0 m-2">
-                        <button type="button" onClick={handleSend}>Salji</button>
-                    </div>*
-                    <div className="row justify-content-center p-0 m-2">
-                        <button type="button" onClick={getImage}>Salji</button>
-                    </div>*
-                    <img src={image}></img>*/}
                 </div>
             </div>
         </div>
         <div className="row justify-cnontent-center my-3">
             <div className="col-md-12">
-                <button className="btn btn-primary" type="button" onClick={handleUpdate}  >Unesi smestaj</button>
+                <button className="btn btn-primary" type="button" onClick={handleUpdate}  >Unesi smeštaj</button>
             </div>
         </div>
-        <div className="row">
+        <div className="row" >
             {props.accarr.accomodations && props.accarr.accomodations.map((item,)=>(
-                <div className="row" key={item.name}>
-                    <div className="col-md-6">
-                        {item.name} 
+                <div className="row">
+                    <div className="col-md-3 p-0" style={{borderLeft:"solid",borderColor:"navy"}}>
+                        <p className="text-center my-3">{item.name} </p>
                     </div>
-                    <div className="col-md-6">
-                        <button onClick={() => handleRemove(item)}>Ukloni</button>
+                    <div className="col-md-2 p-0" style={{borderRight:"solid",borderColor:"navy"}}>
+                        <button className="btn btn-primary my-2" onClick={() => handleRemove(item)}>Ukloni</button>
                     </div>
                 </div>
             ))}

@@ -1,13 +1,8 @@
 package com.penguins.project.controller.Reservation;
 
 
-import com.penguins.project.controller.Arrangement.ArrangementParam;
 import com.penguins.project.controller.Person.PersonParam;
-import com.penguins.project.model.Accomodation.Accomodation;
-import com.penguins.project.model.Arrangement.Arrangement;
-import com.penguins.project.model.Person.Person;
 import com.penguins.project.model.Reservation.Reservation;
-import jakarta.persistence.*;
 import lombok.Getter;
 
 @Getter

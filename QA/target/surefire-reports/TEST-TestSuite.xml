@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="60" failures="3" name="TestSuite" time="11.259" errors="0" skipped="57">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.vm.version" value="19.0.2+7-44"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/jdk-19/lib"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/filip/Desktop/QA"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/filip/Desktop/QA"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="19.0.2+7-44"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="maven.conf" value="/usr/share/maven/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="63.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="5.15.0-60-generic"/>
+    <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
+    <property name="user.home" value="/home/filip"/>
+    <property name="user.timezone" value="Europe/Belgrade"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="19"/>
+    <property name="user.name" value="filip"/>
+    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="java.vm.specification.version" value="19"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="java.home" value="/usr/lib/jvm/jdk-19"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="19.0.2"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.version.date" value="2023-01-17"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+  </properties>
+  <testcase classname="HomePageTest" name="beforeMethod" time="8.572">
+    <failure message="unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=110.0.5481.77)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;dell&apos;, ip: &apos;192.168.43.161&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-60-generic&apos;, java.version: &apos;19.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c2fc793ce4d39e1c313a0eccf42e31d9, get {url=http://localhost:3000}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.77, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: /tmp/.com.google.Chrome.cbuyaS}, goog:chromeOptions: {debuggerAddress: localhost:41139}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41139/devtoo..., se:cdpVersion: 110.0.5481.77, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c2fc793ce4d39e1c313a0eccf42e31d9" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=110.0.5481.77)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;dell&apos;, ip: &apos;192.168.43.161&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-60-generic&apos;, java.version: &apos;19.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c2fc793ce4d39e1c313a0eccf42e31d9, get {url=http://localhost:3000}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.77, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: /tmp/.com.google.Chrome.cbuyaS}, goog:chromeOptions: {debuggerAddress: localhost:41139}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:41139/devtoo..., se:cdpVersion: 110.0.5481.77, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: c2fc793ce4d39e1c313a0eccf42e31d9
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:567)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:330)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteNavigation.to(RemoteWebDriver.java:1022)
+	at HomePageTest.beforeMethod(HomePageTest.java:35)
+</failure>
+    <system-out>Configuring TestNG with: org.apache.maven.surefire.testng.conf.TestNG652Configurator@21bcffb5
+</system-out>
+    <system-err>[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 110.0.5481.77 (resolved driver for Chrome 110)
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /home/filip/.cache/selenium/chromedriver/linux64/110.0.5481.77/chromedriver
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 110.0.5481.77 (resolved driver for Chrome 110)
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /home/filip/.cache/selenium/chromedriver/linux64/110.0.5481.77/chromedriver
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 110.0.5481.77 (resolved driver for Chrome 110)
+[main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /home/filip/.cache/selenium/chromedriver/linux64/110.0.5481.77/chromedriver
+Starting ChromeDriver 110.0.5481.77 (65ed616c6e8ee3fe0ad64fe83796c020644d42af-refs/branch-heads/5481@{#839}) on port 44667
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1676395100,888][WARNING]: virtual void DevToolsClientImpl::AddListener(DevToolsEventListener *) subscribing a listener to the already connected DevToolsClient. Connection notification will not arrive.
+Feb 14, 2023 6:18:21 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Feb 14, 2023 6:18:21 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 110, so returning the closest version found: a no-op implementation
+Feb 14, 2023 6:18:21 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 110.
+Feb 14, 2023 6:18:21 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.1.4` where the version (&quot;v86&quot;) matches the version of the chromium-based browser you&apos;re using and the version number of the artifact is the same as Selenium&apos;s.
+</system-err>
+  </testcase>
+  <testcase classname="HomePageTest" name="testBrojStavkiPoStrani" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testDaLiImaBrojStavkiPoStrani100" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testDaLiImaBrojStavkiPoStrani200" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testDaLiImaBrojStavkiPoStrani25" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testDaLiImaBrojStavkiPoStrani50" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPodrazumevanogBrojaStavkiPoStrani" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPojedinacnePonude" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoDeluNazivaAranzmana" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoNazivuAranzmana" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoTipuPrevozaAutobus" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoTipuPrevozaAvion" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoTipuPrevozaBrod" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoTipuPrevozaSamostalniPrevoz" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPretragePoTipuPrevozaVoz" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testPrevoz" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="testRezervacijeAranzmana" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="HomePageTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="AdminTest" name="beforeMethod" time="1.26">
+    <failure message="unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=110.0.5481.77)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;dell&apos;, ip: &apos;192.168.43.161&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-60-generic&apos;, java.version: &apos;19.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1fb015f75405808faf86ec80914a4c19, get {url=http://localhost:3000/login}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.77, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: /tmp/.com.google.Chrome.cWF72a}, goog:chromeOptions: {debuggerAddress: localhost:36321}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:36321/devtoo..., se:cdpVersion: 110.0.5481.77, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 1fb015f75405808faf86ec80914a4c19" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=110.0.5481.77)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;dell&apos;, ip: &apos;192.168.43.161&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-60-generic&apos;, java.version: &apos;19.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1fb015f75405808faf86ec80914a4c19, get {url=http://localhost:3000/login}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.77, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: /tmp/.com.google.Chrome.cWF72a}, goog:chromeOptions: {debuggerAddress: localhost:36321}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:36321/devtoo..., se:cdpVersion: 110.0.5481.77, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 1fb015f75405808faf86ec80914a4c19
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:567)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:330)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteNavigation.to(RemoteWebDriver.java:1022)
+	at AdminTest.beforeMethod(AdminTest.java:37)
+</failure>
+    <system-err>Starting ChromeDriver 110.0.5481.77 (65ed616c6e8ee3fe0ad64fe83796c020644d42af-refs/branch-heads/5481@{#839}) on port 39277
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1676395102,071][WARNING]: virtual void DevToolsClientImpl::AddListener(DevToolsEventListener *) subscribing a listener to the already connected DevToolsClient. Connection notification will not arrive.
+Feb 14, 2023 6:18:22 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Feb 14, 2023 6:18:22 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 110, so returning the closest version found: a no-op implementation
+Feb 14, 2023 6:18:22 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 110.
+Feb 14, 2023 6:18:22 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.1.4` where the version (&quot;v86&quot;) matches the version of the chromium-based browser you&apos;re using and the version number of the artifact is the same as Selenium&apos;s.
+</system-err>
+  </testcase>
+  <testcase classname="AdminTest" name="brisanjeAranzmana" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="AdminTest" name="close" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="AdminTest" name="beforeMethod" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="AdminTest" name="testDodajAranzman" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="AdminTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="LoginPageTest" name="beforeMethod" time="1.393">
+    <failure message="unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=110.0.5481.77)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;dell&apos;, ip: &apos;192.168.43.161&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-60-generic&apos;, java.version: &apos;19.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [89acefc1dcad5f53bae1e187b09f5cf5, get {url=http://localhost:3000/login}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.77, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: /tmp/.com.google.Chrome.Jc2g5Y}, goog:chromeOptions: {debuggerAddress: localhost:36661}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:36661/devtoo..., se:cdpVersion: 110.0.5481.77, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 89acefc1dcad5f53bae1e187b09f5cf5" type="org.openqa.selenium.WebDriverException">org.openqa.selenium.WebDriverException: unknown error: net::ERR_CONNECTION_REFUSED
+  (Session info: chrome=110.0.5481.77)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;dell&apos;, ip: &apos;192.168.43.161&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.15.0-60-generic&apos;, java.version: &apos;19.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [89acefc1dcad5f53bae1e187b09f5cf5, get {url=http://localhost:3000/login}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 110.0.5481.77, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: /tmp/.com.google.Chrome.Jc2g5Y}, goog:chromeOptions: {debuggerAddress: localhost:36661}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:36661/devtoo..., se:cdpVersion: 110.0.5481.77, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 89acefc1dcad5f53bae1e187b09f5cf5
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:567)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:330)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteNavigation.to(RemoteWebDriver.java:1022)
+	at LoginPageTest.beforeMethod(LoginPageTest.java:32)
+</failure>
+    <system-err>Starting ChromeDriver 110.0.5481.77 (65ed616c6e8ee3fe0ad64fe83796c020644d42af-refs/branch-heads/5481@{#839}) on port 59784
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+[1676395103,481][WARNING]: virtual void DevToolsClientImpl::AddListener(DevToolsEventListener *) subscribing a listener to the already connected DevToolsClient. Connection notification will not arrive.
+Feb 14, 2023 6:18:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Feb 14, 2023 6:18:23 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 110, so returning the closest version found: a no-op implementation
+Feb 14, 2023 6:18:23 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 110.
+Feb 14, 2023 6:18:23 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.1.4` where the version (&quot;v86&quot;) matches the version of the chromium-based browser you&apos;re using and the version number of the artifact is the same as Selenium&apos;s.
+</system-err>
+  </testcase>
+  <testcase classname="LoginPageTest" name="testLoginAdmin" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="LoginPageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase classname="LoginPageTest" name="beforeMethod" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase classname="LoginPageTest" name="testLoginStaff" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="LoginPageTest" name="close" time="0.001">
+    <skipped/>
+  </testcase>
+</testsuite>

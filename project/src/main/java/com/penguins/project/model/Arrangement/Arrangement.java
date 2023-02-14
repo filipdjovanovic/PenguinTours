@@ -1,9 +1,9 @@
 package com.penguins.project.model.Arrangement;
 
 
+import com.penguins.project.model.Accomodation.Accomodation;
 import com.penguins.project.model.Program.Program;
 import com.penguins.project.model.Reservation.Reservation;
-import com.penguins.project.model.Accomodation.Accomodation;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -19,7 +19,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
 public class Arrangement {
 
@@ -55,5 +54,6 @@ public class Arrangement {
     @JoinTable(name = "accomodation_arrangement", joinColumns = @JoinColumn(name = "arrangement_id"), inverseJoinColumns = @JoinColumn(name = "accomodation_id"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Accomodation> accomodations = new HashSet<>();
+
 
 }

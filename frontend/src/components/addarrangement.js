@@ -108,7 +108,7 @@ export default function Addarrangement(){
         <div className="conteiner">
             <form className="row ">
                 <div className="col-md-5">
-                    <label className="form-label my-1" htmlFor="name">Naziv aranzmana:</label>
+                    <label className="form-label my-1" htmlFor="name">Naziv aranžmana:</label>
                     <input className="form-control" 
                         type="text" 
                         id="name" 
@@ -151,7 +151,7 @@ export default function Addarrangement(){
                 </div>
                 <div className="row justify-content-center my-3">
                     <div className="col-md-4">
-                        <button className="btn btn-primary" type="submit" onClick={handleClick}  >Dodaj aranzman</button>
+                        <button className="btn btn-primary" type="submit" onClick={handleClick}  >Dodaj aranžman</button>
                     </div>
                 </div>
             </form>

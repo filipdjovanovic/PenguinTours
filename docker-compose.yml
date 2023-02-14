@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+
+  daniloreact:
+    build: 
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - ivanspring
+    networks:
+      - mreza
+    volumes:
+      - ./frontend/src:/app/src:ro
+
+  ivanspring:
+    build:
+      context: project
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - tmdb
+    networks:
+      - mreza
+
+  tmdb:
+    build:
+      context: sql
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    networks:
+      - mreza
+    environment:
+      - MYSQL_ROOT_PASSWORD=lozinka123
+      - MYSQL_DATABASE=agency
+
+networks:
+  mreza:
+    driver: bridge

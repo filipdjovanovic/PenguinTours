@@ -33,17 +33,6 @@ export default function Programinput(props){
             return{...previousData,date:(e.target.value)}
         })
     }
-    /*
-    const updateDate=(e)=>{
-        setProgram(previousData=>{
-            return{...previousData,date:new Date((e.target.value)).toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-              })}
-        })
-    }
-    */
     const handleUpdatePrograms=(newArray)=>{
         setProgram((previousData) => (
              { ...previousData, locations:newArray}
@@ -69,13 +58,18 @@ export default function Programinput(props){
                     <Programlocation sendLocation={handleUpdatePrograms} program={program} removeFromArray={removeFromArray}/>
                     <div className="row justify-cnontent-center my-3">
                     <div className="col-md-12">
-                        <button className="btn btn-primary" type="button" onClick={handleUpdate}  >Unesi program</button>
+                        <button className="btn btn-primary" type="button" onClick={handleUpdate}>Unesi program</button>
                     </div>
                 </div>
                 <div className="row">
                     {props.progarr.programs && props.progarr.programs.map((item,index)=>(
-                        <div key={index}>
-                        {item.date} <button onClick={() => handleRemove(item)}>Ukloni</button>
+                        <div className="row"  key={index}>
+                            <div className="col-md-3 p-0" style={{borderLeft:"solid",borderColor:"navy"}}>
+                                <p className="text-center my-3">{item.date} </p>
+                            </div>
+                            <div className="col-md-3 p-0" style={{borderRight:"solid",borderColor:"navy"}}>
+                                <button className="btn btn-primary my-2" onClick={() => handleRemove(item)}>Ukloni</button>
+                            </div>
                         </div>
                     ))}
                 </div>

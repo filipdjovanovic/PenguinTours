@@ -21,7 +21,7 @@ public class ProgramParam {
     public Program toProgram(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
-        Set<Location> locations = this.getLocations()
+        Set<Location> locationSet= this.getLocations()
                 .stream()
                 .map(locationParam -> locationParam.toLocation())
                 .collect(Collectors.toSet());
@@ -30,7 +30,7 @@ public class ProgramParam {
                 .builder()
                 .description(this.getDescription())
                 .date(LocalDate.parse(this.getDate(),formatter))
-                .locations(locations)
+                .locations(locationSet)
                 .build();
 
         return program;

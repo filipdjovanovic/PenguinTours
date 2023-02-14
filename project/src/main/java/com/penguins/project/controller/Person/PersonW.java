@@ -1,19 +1,12 @@
 package com.penguins.project.controller.Person;
 
 
-import com.penguins.project.controller.Reservation.ReservationW;
 import com.penguins.project.model.Person.Person;
-import com.penguins.project.model.Reservation.Reservation;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 @Getter
 @Builder

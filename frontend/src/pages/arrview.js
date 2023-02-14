@@ -4,39 +4,36 @@ import Programview from "../components/programview";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
-
 export default function Arrview(){
     const [arrangament,setArrangament]=useState([])
     const [activeTab, setActiveTab] = useState("tab1");
-
     const {id}= useParams();
 
     const handleTab1 = () => {
         setActiveTab("tab1");
     };
+
     const handleTab2 = () =>{
         setActiveTab("tab2");
     };
 
     useEffect(() => {
         const fetchData = async () => {
-          const result = await axios.get("http://localhost:8080/arrangements/get?id=" + id);
-          setArrangament(result.data);
+            const result = await axios.get("http://localhost:8080/arrangements/get?id=" + id);
+            setArrangament(result.data);
         };
-    
         fetchData();
-    }, [id]);
+    },[id]);
 
     return(
-        
         <div className="container">
             <div className="row justify-content-center mt-5">
                 <div className="col-md-4 text-center">
-                <h3>{arrangament.name}</h3>
+                    <h3>{arrangament.name}</h3>
                 </div>
             </div>
             <div className="row justify-content-center mt-5">
-                <img src={require("../slike/ikonica.png")}/*{(arrangament.bigPicture===""?"":arrangament.bigPicture)}*/ alt="Slika putovanja" style={{maxWidth:"500px",maxHeight:"400px"}}></img>
+                <img src={(arrangament.bigPicture===""?"":"data:image/jpeg;base64,"+arrangament.bigPicture)} alt="Slika putovanja" style={{maxWidth:"500px",maxHeight:"400px"}}></img>
             </div>
             <div className="row justify-content-center py-5" >
                 <div className="col-md-8" >
@@ -54,7 +51,7 @@ export default function Arrview(){
                 </div>
                 <div className="col-md-4">
                     <div className="row justify-content-center" style={{backgroundColor:'white'}}>
-                        Cena po ocobi:
+                        Cena po osobi:
                     </div>
                     <div className="row justify-content-center">
                         {arrangament.price}€
@@ -72,7 +69,7 @@ export default function Arrview(){
             <div className="container">
                 <ul className="nav nav-tabs">
                     <li className="nav-item">
-                        <button className={activeTab === "tab1" ? "nav-link active" : "nav-link"} onClick={handleTab1}>Smestaj</button>
+                        <button className={activeTab === "tab1" ? "nav-link active" : "nav-link"} onClick={handleTab1}>Smeštaj</button>
                     </li>
                     <li className="nav-item">
                         <button className={activeTab === "tab2" ? "nav-link active" : "nav-link"} onClick={handleTab2}>Program putovanja</button>

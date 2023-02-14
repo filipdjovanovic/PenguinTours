@@ -17,6 +17,9 @@ export default function Arrapply(){
         }
     });
     const {id}= useParams();
+    const [error, setError] = useState("");
+    const [success,setSuccess]=useState("")
+    const [errorEmpty,setErrorEmpty]=useState("")
 
 
     const sendApplication=()=>{
@@ -24,19 +27,36 @@ export default function Arrapply(){
         cancelSearch();
     };
 
+    const checkSearch=()=>{
+        let isEmpty = ((application.numberOfAdults!== 0 || application.numberOfKids!==0) && application.paymentMethod!== "" && 
+        application.comment!=="" && application.person.name !== "" && application.person.lastName !== "" 
+        && application.person.email !== "" && application.person.contact !== "" && application.person.address !== "");
+        return isEmpty;
+    }
+
     const handleClick = () => {
         if (!Object.keys(application).length) {
             console.error('State cannot be empty');
             return;
           }
         
-        axios.post('http://localhost:8080/reservation/add?arrangement_id='+id, application)
-          .then(response => {
-            console.log(response.data);
-          })
-          .catch(error => {
-            console.error(error);
-          });
+        
+        
+        if (checkSearch()){
+            try{
+                axios.post('http://localhost:8080/reservation/add?arrangement_id='+id, application)
+                  .then(response => {
+                    setSuccess(response.data);
+                    setErrorEmpty("")
+                  })
+                }catch(error)  {
+                    setError(error);
+                  }
+        } else{
+            setErrorEmpty("error");
+            setSuccess("");
+        }
+        
       };
 
     const cancelSearch=()=>{
@@ -153,7 +173,7 @@ export default function Arrapply(){
                             style={{borderRadius:'20px'}}></input>
                     </div>
                     <div className="row">
-                        <label className="form-label my-1" htmlFor="paymentMethod">Nacin placanja:</label>
+                        <label className="form-label my-1" htmlFor="paymentMethod">Način placanja:</label>
                         <input className="form-control" 
                             type="text" 
                             id="paymentMethod" 
@@ -168,7 +188,7 @@ export default function Arrapply(){
                             <input 
                                 type="number" 
                                 className="form-control"  
-                                placeholder="numberOfAdults"  
+                                placeholder="..."  
                                 name="numberOfAdults"
                                 value={application.numberOfAdults}
                                 onChange={updateAdults} 
@@ -180,7 +200,7 @@ export default function Arrapply(){
                             <input 
                                 type="number" 
                                 className="form-control"  
-                                placeholder="numberOfKids"  
+                                placeholder="..."  
                                 name="numberOfKids"
                                 value={application.numberOfKids}
                                 onChange={updateKids} 
@@ -200,6 +220,21 @@ export default function Arrapply(){
             <div className="row justify-content-center mt-3 mb-5">
                 <div className="col-md-3">
                     <button className="btn btn-primary" type="button" onClick={sendApplication} style={{width:"100%"}}>Prijavi se!</button>
+                </div>
+            </div>
+            <div className="row my-2">
+                <div className="col-md-12">
+                    <p className="text-center text-break">{errorEmpty && <span className="error" style={{color:"red"}}>Molimo Vas popunite sva polja</span>}</p>
+                </div>
+            </div>
+            <div className="row my-2">
+                <div className="col-md-12">
+                    <p className="text-center text-break">{success && <span  style={{color:"green"}}>Rezervacija je poslata</span>}</p>
+                </div>
+            </div>
+            <div className="row my-2">
+                <div className="col-md-12">
+                    <p className="text-center text-break">{error && <span className="error" style={{color:"red"}}>Pogrešno korisničko ime ili lozinka</span>}</p>
                 </div>
             </div>
         </div>

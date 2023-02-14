@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Addarrangement from "../components/addarrangement";
 import Reservation from "../components/reservations";
 import Updatedelete from "../components/updatedelete";
+import { refreshToken } from "../helpers/refreshtoken";
+import { setAuthToken } from "../routes.js/setauth";
 
 export default function Staffpage(){
     
@@ -10,18 +12,25 @@ export default function Staffpage(){
 
     const handleTab1 = () => {
         setActiveTab("tab1");
+        refreshToken(localStorage.getItem("token"));
     };
 
     const handleTab2 = () =>{
         setActiveTab("tab2");
+        refreshToken(localStorage.getItem("token"));
     };
 
     const handleTab3 = () =>{
         setActiveTab("tab3");
+        refreshToken(localStorage.getItem("token"));
     };
 
+    useEffect(()=>{
+        refreshToken(localStorage.getItem("token"));
+    },[])
+
     return(
-        <div className="container">
+        <div className="container d-flex flex-column min-vh-100" >
             <div className="row justify-content-center my-2 py-2 ">
                 <div className="text-center">
                     <h1>Dobrodošli na stranu za zaposlene</h1>

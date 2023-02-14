@@ -53,11 +53,11 @@ export default function Reservationcard(props){
                 :(props.application.accepted==="true")
                     ?<button className="btn btn-danger mx-1" onClick={onRejected}>Odbaci </button>
                     :(props.application.accepted==="false")        
-                        ?<p className="card-text">Ova rezervacija je odbacena  </p>
+                        ?<p className="card-text">Ova rezervacija je odbačena</p>
                         :null
             :(rejected==="accepted")
                 ?<button className="btn btn-danger mx-1" onClick={onRejected}>Odbaci</button>
-                :<p className="card-text">Ova rezervacija je odbacena</p>}
+                :<p className="card-text">Ova rezervacija je odbačena</p>}
             </div>
         </div>
     );

@@ -49,7 +49,6 @@ export default function Updatearr(props){
 
     const jumpClick=()=>{
         handleClick();
-        refreshPage()
     }
 
     const refreshPage=()=>{
@@ -107,12 +106,12 @@ export default function Updatearr(props){
         <div className="container">
             <div className="row justify-content-center my-3">
                 <div className="col-md-6 offset-md-3">
-                    <h3 className="text-break">Azuriraj aranzman</h3>
+                    <h3 className="text-break">Ažuriraj aranžman</h3>
                 </div>
             </div>
             <form className="row ">
                 <div className="col-md-5">
-                    <label className="form-label my-1" htmlFor="name">Naziv aranzmana:</label>
+                    <label className="form-label my-1" htmlFor="name">Naziv aranžmana:</label>
                     <input className="form-control" 
                         type="text" 
                         id="name" 
@@ -155,7 +154,7 @@ export default function Updatearr(props){
                 <div className="row justify-content-center my-3">
                     <div className="col-md-4 mx-5 px-5 align-items-center">
                         <Link to={""} >
-                            <button className="btn btn-primary" type="button" onClick={jumpClick}  >Azuriraj aranzman</button>
+                            <button className="btn btn-primary" type="button" onClick={jumpClick} >Ažuriraj aranžman</button>
                         </Link>
                     </div>
                 </div>

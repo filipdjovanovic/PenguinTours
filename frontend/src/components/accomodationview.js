@@ -21,12 +21,12 @@ export default function Accomodationview(props){
                     </div>
                     <div className="row p-3">
                         <div className="col-md-12">
-                            <strong>Tip smestaja u sobi:</strong> {props.view.type}
+                            <strong>Tip smeštaja u sobi:</strong> {props.view.type}
                         </div>
                     </div>
                     <div className="row p-3">
                         <div className="col-md-12">
-                            <strong>Kategorija smestaja:</strong> mora broj ok 1 do 5
+                            <strong>Kategorija smeštaja:</strong>  {(props.view.category)}
                         </div>
                     </div>
                     <div className="row p-3">
@@ -41,7 +41,7 @@ export default function Accomodationview(props){
                     </div>
                     <div className="row p-3">
                         <div className="col-md-12">
-                            <strong>Frizider:</strong> {(props.view.fridge)?<span>DA!</span>:<span>NE!</span>}
+                            <strong>Frižider:</strong> {(props.view.fridge)?<span>DA!</span>:<span>NE!</span>}
                         </div>
                     </div>
                     <div className="row p-3">

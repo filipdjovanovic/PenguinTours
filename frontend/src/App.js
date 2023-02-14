@@ -16,6 +16,9 @@ import Arrapply from './components/arrapply';
 import ProtectedRoutes from './routes.js/protected';
 import ProtectedRoutesS from './routes.js/protectedstaff';
 import Staffpage from './pages/staffpage';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 function Userlayout(){
   return(
@@ -47,8 +50,44 @@ function Stafflayout(){
 }
 
 function App() {
+  const [populate,setPopulate]=useState("");
+
+
+    const initAll=(data)=>{
+        let some=data;
+        setPopulate(data);
+    }
+
+    
+    useEffect(() => {
+          const interval = setInterval(() => {
+            axios.get('http://localhost:8080/arrangements/flag')
+            .then((response)=>response.data)
+            .then((data)=>{
+              if (data.name=="true") {
+                clearInterval(interval);
+                initAll(data.name);
+              } else {
+                initAll(data.name);
+              }
+            });
+          }, 600);
+          return () => clearInterval(interval);
+    }, []);
   return (
     <>
+    
+      {populate==="false"?<div className='row justify-content-center align-items-center text-center my-5 py-5'>
+                            <div className='row text-center'>
+                              <h1>Inicijalizacija je u toku</h1>
+                            </div>
+                            <div className="row d-flex justify-content-center m-5 p-5">
+                                  <div className="spinner-border" role="status">
+                                      <span className="visually-hidden">Loading...</span>
+                                  </div>
+                            </div>
+                          </div>:
+    
     <Router>
       <Routes>
         <Route  path='/' element={<Userlayout />}>
@@ -87,7 +126,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
-    </Router> 
+    </Router> }
     </>
   );
 }

@@ -24,7 +24,7 @@ export default function Programlocation(props){
     const handleFileUpload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        updatePicture(base64);
+        updatePicture(base64.slice(23));
     };
 
     const handleRemove = (item) => {
@@ -68,7 +68,7 @@ export default function Programlocation(props){
         </div>
         <div className="row">
             <div className="col-md-12">
-                <label className="form-label my-1" htmlFor="country">Drzava:</label>
+                <label className="form-label my-1" htmlFor="country">Država:</label>
                 <input className="form-control" 
                     type="text" 
                     id="country" 
@@ -87,7 +87,7 @@ export default function Programlocation(props){
                     <option value="Azija">Azija</option>
                     <option value="Afrika">Afrika</option>
                     <option value="Severna Amerika">Severna Amerika</option>
-                    <option value="Juzna Amerika">Juzna Amerika</option>
+                    <option value="Juzna Amerika">Južna Amerika</option>
                     <option value="Australija i Okeanija">Australija i Okeanija</option>
                     <option defaultValue={""} value="">...</option>
                 </select>
@@ -95,7 +95,7 @@ export default function Programlocation(props){
         </div>
         <div className="row my-1">
             <div className="col-md-12">
-                <label htmlFor="picture" className="form-label">Slika Lokacije:</label>
+                <label htmlFor="picture" className="form-label">Slika lokacije:</label>
                 <br></br>
                 <input type="file"
                     id="picture"
@@ -106,13 +106,18 @@ export default function Programlocation(props){
         </div>
         <div className="row justify-cnontent-center my-3">
             <div className="col-md-12">
-                <button className="btn btn-primary" type="button" onClick={handleUpdate}  >Unesi lokaciju</button>
+                <button className="btn btn-primary" type="button" onClick={handleUpdate}>Unesi lokaciju</button>
             </div>
         </div>
         <div className="row">
             {props.program.locations && props.program.locations.map((item,index)=>(
-                <div key={index}>
-                {item.city} <button onClick={() => handleRemove(item)}>Ukloni</button>
+                <div className="row"  key={index}>
+                    <div className="col-md-3 p-0" style={{borderLeft:"solid",borderColor:"navy"}}>
+                        <p className="text-center my-3">{item.city} </p>
+                    </div>
+                    <div className="col-md-3 p-0" style={{borderRight:"solid",borderColor:"navy"}}>
+                        <button className="btn btn-primary my-2" onClick={() => handleRemove(item)}>Ukloni</button>
+                    </div>
                 </div>
             ))}
         </div>

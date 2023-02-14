@@ -14,15 +14,17 @@ public class LocationParam {
     private String city;
     private String country;
     private String continent;
-
-    //private Byte[] picture;
+    private String picture;
 
     public Location toLocation(){
         Location location = Location.builder()
                 .city(this.getCity())
                 .country(this.getCountry())
                 .continent(this.getContinent())
+                .picture(this.getPicture())
                 .build();
+
+
 
         return location;
     }

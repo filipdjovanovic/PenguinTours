@@ -5,8 +5,6 @@ import com.penguins.project.model.Arrangement.Arrangement;
 import com.penguins.project.model.Person.Person;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "reservation")

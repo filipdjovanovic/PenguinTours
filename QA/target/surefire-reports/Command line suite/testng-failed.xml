@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Command line suite]" verbose="0">
+  <test thread-count="5" name="Command line test(failed)" verbose="0">
+    <classes>
+      <class name="HomePageTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="testDaLiImaBrojStavkiPoStrani25"/>
+          <include name="testPretragePoTipuPrevozaVoz"/>
+          <include name="testDaLiImaBrojStavkiPoStrani200"/>
+          <include name="testDaLiImaBrojStavkiPoStrani100"/>
+          <include name="testPojedinacnePonude"/>
+          <include name="testBrojStavkiPoStrani"/>
+          <include name="testDaLiImaBrojStavkiPoStrani50"/>
+          <include name="testPodrazumevanogBrojaStavkiPoStrani"/>
+          <include name="testPretragePoTipuPrevozaBrod"/>
+          <include name="close"/>
+          <include name="testPrevoz"/>
+          <include name="testPretragePoTipuPrevozaAvion"/>
+          <include name="testPretragePoTipuPrevozaAutobus"/>
+          <include name="testRezervacijeAranzmana"/>
+          <include name="beforeMethod"/>
+          <include name="testPretragePoNazivuAranzmana"/>
+          <include name="testPretragePoTipuPrevozaSamostalniPrevoz"/>
+          <include name="testPretragePoDeluNazivaAranzmana"/>
+        </methods>
+      </class> <!-- HomePageTest -->
+      <class name="LoginPageTest">
+        <methods>
+          <include name="testLoginStaff"/>
+          <include name="beforeMethod"/>
+          <include name="testLoginAdmin"/>
+          <include name="close"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- LoginPageTest -->
+      <class name="AdminTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="close"/>
+          <include name="brisanjeAranzmana"/>
+          <include name="testDodajAranzman"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- AdminTest -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Command line suite] -->

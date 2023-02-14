@@ -13,7 +13,7 @@ export default function Cards(props){
         <div style={{borderTop:'solid',borderBottom:'solid', borderColor:'darkorange'}}>
             <div className="row row-cols-1 row-cols-md-3 g-4 my-2 justify-content-center" >
                 {props.content && props.content.map((item,index)=>(
-                    <Cardlist key={index} name={item.name} destination={item.destination} city={item.city} country={item.country} startDate={item.startDate} endDate={item.endDate} price={item.price} transport={item.transport} id={item.id} picture={item.bigPicture}/>
+                    <Cardlist key={index} name={item.name} destination={item.destination} city={item.city} country={item.country} startDate={item.startDate} endDate={item.endDate} price={item.price} transport={item.transportation} id={item.id} picture={item.bigPicture}/>
                 ))}
             </div>
         </div>

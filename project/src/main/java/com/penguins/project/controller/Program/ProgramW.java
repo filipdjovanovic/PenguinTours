@@ -6,15 +6,17 @@ import com.penguins.project.model.Program.Program;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
-import java.util.HashSet;
+import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
-public class ProgramW {
+public class ProgramW implements Comparable<ProgramW>{
     private String description;
     private String date;
     private Set<LocationW> locations;
@@ -24,7 +26,18 @@ public class ProgramW {
         this.date = program.getDate().toString();
         this.locations = program.getLocations()
                 .stream()
-                .map(Location -> new LocationW(Location))
+                .map(Location -> {
+                    try {
+                        return new LocationW(Location);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public int compareTo(ProgramW o) {
+        return this.getDate().compareTo(o.getDate());
     }
 }

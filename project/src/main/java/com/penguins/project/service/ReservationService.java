@@ -5,7 +5,6 @@ import com.penguins.project.model.Reservation.Reservation;
 import com.penguins.project.model.Reservation.ReservationRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,18 +24,27 @@ public class ReservationService {
     }
 
     @Transactional
-    public List<ReservationW> getAllReservations(){
-        List<ReservationW> reservationList = reservationRepository.findAll()
+    public List<ReservationW> getAllReservations(String arrangementName){
+        List<ReservationW> reservationList = reservationRepository.findByOrderByAcceptedAsc()
                 .stream()
                 .map(reservation -> new ReservationW(reservation))
                 .toList();
+        if (arrangementName != null){
+            reservationList = reservationList
+                    .stream()
+                    .filter(reservationW -> reservationW.getArrangementName().toLowerCase().contains(arrangementName.toLowerCase()))
+                    .toList();
+        }
         return reservationList;
     }
-    public void updateReservation(@RequestParam Long id, @RequestParam String accepted){
+    public void updateReservation(Long id,String accepted){
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("Reservation with id " + id + "does not exist"));
 
         reservation.setAccepted(accepted);
         reservationRepository.save(reservation);
+
     }
+
+
 }

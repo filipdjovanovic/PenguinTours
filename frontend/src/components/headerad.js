@@ -20,7 +20,7 @@ export default function Navheaderad(){
                         </Link>
                         <ul className="nav" >
                             <li className="nav-item mx-1">
-                                <Link className="btn" type="button" to="" style={{color: 'antiquewhite' }}>POCETNA</Link>
+                                <Link className="btn" type="button" to="" style={{color: 'antiquewhite' }}>POČETNA</Link>
                             </li>
                             <li className="nav-item mx-1">
                                 <Link className="btn" type="button" to="search" style={{color: 'antiquewhite'}}>PUTOVANJA</Link>

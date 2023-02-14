@@ -15,8 +15,8 @@ export default function Reservation(){
     };
 
     const getSearch=()=>{
-        var x = `http://localhost:8080/reservation/get?`+
-            (search?"arrangementName="+search+"&":"");
+        var x = `http://localhost:8080/reservation/all`+
+            (search?"?arrangementName="+search:"");
         axios.get(x)
             .then((response) => response.data)
             .then((data) => (
@@ -38,7 +38,7 @@ export default function Reservation(){
             <form className="row justify-content-center">
                 <div className="col-md-4 ">
                 <div className="row justify-content-center text-center">
-                    <label htmlFor="search" className="form-label text-">Pretrazi po nazivu arnazmana:</label>
+                    <label htmlFor="search" className="form-label text-">Pretrazi po nazivu aranžmana:</label>
                     <input className="form-control" 
                         type="text" 
                         id="search" 
@@ -47,7 +47,7 @@ export default function Reservation(){
                         onChange={(e)=>setSearch(e.target.value)}
                         style={{borderRadius:'20px'}}
                         ></input>
-                        <button className='btn btn-primary my-2' type='button' onClick={onSearch} style={{width:"50%"}}>Pretrazi</button>
+                        <button className='btn btn-primary my-2' type='button' onClick={onSearch} style={{width:"50%"}}>Pretraži</button>
                         </div>
                 </div>
             </form>

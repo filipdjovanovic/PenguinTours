@@ -1,14 +1,8 @@
 package com.penguins.project.controller.Reservation;
 
 
-import com.penguins.project.controller.Arrangement.ArrangementShortW;
 import com.penguins.project.controller.Person.PersonW;
-import com.penguins.project.model.Arrangement.Arrangement;
-import com.penguins.project.model.Person.Person;
 import com.penguins.project.model.Reservation.Reservation;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
