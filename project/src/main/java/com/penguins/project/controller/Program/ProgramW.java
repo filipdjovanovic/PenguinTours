@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +27,13 @@ public class ProgramW implements Comparable<ProgramW>{
         this.date = program.getDate().toString();
         this.locations = program.getLocations()
                 .stream()
-                .map(Location -> new LocationW(Location))
+                .map(Location -> {
+                    try {
+                        return new LocationW(Location);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .collect(Collectors.toSet());
     }
 

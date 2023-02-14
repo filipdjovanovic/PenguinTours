@@ -1,10 +1,7 @@
 package com.penguins.project.controller.Arrangement;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Date;
 
@@ -13,6 +10,8 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Setter
+@Getter
 public class ArrangementShortW {
 
     private Long id;
@@ -26,7 +25,7 @@ public class ArrangementShortW {
     private Long numberOfDays;
     private Date startDate;
     private Date endDate;
-
+    private String bigPicture;
     public ArrangementShortW(Object[] obj){
         this.setId((Long) obj[0]);
         this.setName((String) obj[1]);

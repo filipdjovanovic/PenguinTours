@@ -20,8 +20,10 @@ public class LocationService {
 
     @Transactional
     public List<Location> findSame(Location location){
-        Example<Location> example = Example.of(location);
-        return locationRepository.findAll(example);
+        String city = location.getCity();
+        String country = location.getCountry();
+        String continent = location.getContinent();
+        return locationRepository.findByCityAndCountryAndContinent(city,country,continent);
 
     }
 

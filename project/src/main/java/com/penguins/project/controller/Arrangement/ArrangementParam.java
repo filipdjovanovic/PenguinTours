@@ -19,7 +19,6 @@ public class ArrangementParam {
     private Integer price;
     private String transportation;
     private String status;
-
     private String remark;
     private Set<ProgramParam> programs = new HashSet<>();
     private Set<AccomodationParam> accomodations = new HashSet<>();

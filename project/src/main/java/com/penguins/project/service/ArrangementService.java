@@ -13,10 +13,18 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
+import java.util.Base64;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,21 +68,109 @@ public class ArrangementService {
                             if(!list.isEmpty()){
                                 return list.get(0);
                             }
+                            byte[] imageBytes = Base64.getDecoder().decode(location.getPicture().substring(23));
+                            try {
+                                FileOutputStream fos = new FileOutputStream("images/" + location + ".jpg");
+                                fos.write(imageBytes);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            location.setPicture("images/" + location + ".jpg");
                             return location;
                         })
                         .collect(Collectors.toSet())))
                 .collect(Collectors.toSet()));
 
-
         arrangement.setAccomodations(arrangement.getAccomodations()
                 .stream()
                 .peek(accomodation -> {
+                    /*
                     Location location = accomodation.getLocation();
                     List<Location> list = locationService.findSame(location);
+
                     if(!list.isEmpty()){
                         accomodation.setLocation(list.get(0));
                     }else{
-                        accomodation.setLocation(location);
+
+                        imageBytes = Base64.getDecoder().decode(accomodation.getLocation().getPicture().substring(23));
+                        try {
+                            FileOutputStream fos = new FileOutputStream("images/" + accomodation.getLocation() + ".jpg");
+                            fos.write(imageBytes);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    accomodation.getLocation().setPicture("images/" + accomodation.getLocation() + ".jpg");
+                    accomodation.setLocation(location);
+
+                     */
+                    byte[] imageBytes;
+                    Random rand = new Random();
+                    if (accomodation.getPicture1()!=null){
+                        imageBytes = Base64.getDecoder().decode(accomodation.getPicture1().substring(23));
+                        try {
+                            String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                            FileOutputStream fos = new FileOutputStream(name);
+                            fos.write(imageBytes);
+                            accomodation.setPicture1(name);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    if (accomodation.getPicture2()!=null){
+                        imageBytes = Base64.getDecoder().decode(accomodation.getPicture2().substring(23));
+                        try {
+                            String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                            FileOutputStream fos = new FileOutputStream(name);
+                            fos.write(imageBytes);
+                            accomodation.setPicture2(name);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    if (accomodation.getPicture3()!=null){
+                        imageBytes = Base64.getDecoder().decode(accomodation.getPicture3().substring(23));
+                        try {
+                            String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                            FileOutputStream fos = new FileOutputStream(name);
+                            fos.write(imageBytes);
+                            accomodation.setPicture3(name);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    if (accomodation.getPicture4()!=null){
+                        imageBytes = Base64.getDecoder().decode(accomodation.getPicture4().substring(23));
+                        try {
+                            String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                            FileOutputStream fos = new FileOutputStream(name);
+                            fos.write(imageBytes);
+                            accomodation.setPicture4(name);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    if (accomodation.getPicture5()!=null){
+                        imageBytes = Base64.getDecoder().decode(accomodation.getPicture5().substring(23));
+                        try {
+                            String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                            FileOutputStream fos = new FileOutputStream(name);
+                            fos.write(imageBytes);
+                            accomodation.setPicture5(name);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    if (accomodation.getPicture6()!=null){
+                        imageBytes = Base64.getDecoder().decode(accomodation.getPicture6().substring(23));
+                        try {
+                            String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                            FileOutputStream fos = new FileOutputStream(name);
+                            fos.write(imageBytes);
+                            accomodation.setPicture6(name);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 })
                 .collect(Collectors.toSet()));
@@ -107,7 +203,23 @@ public class ArrangementService {
         return new PageImpl<>(
                 page.getContent()
                         .stream()
-                        .map(obj -> new ArrangementShortW(obj)
+                        .map(obj -> {
+                            ArrangementShortW arrangementShortW =new ArrangementShortW(obj);
+                            Location location = Location.builder()
+                                    .city(arrangementShortW.getCity())
+                                    .country(arrangementShortW.getCountry())
+                                    .continent(arrangementShortW.getContinent())
+                                    .build();
+                            Location locationInBase = locationService.findSame(location).get(0);
+                            System.out.println(locationInBase.getCity());
+                            System.out.println(locationInBase.getPicture());
+                            try {
+                                arrangementShortW.setBigPicture(Base64.getEncoder().encodeToString(Files.readAllBytes(Paths.get(locationInBase.getPicture()))));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            return arrangementShortW;
+                            }
                         )
                         .toList()
                 ,pageable
@@ -225,6 +337,14 @@ public class ArrangementService {
                                 if(!list.isEmpty()){
                                     return list.get(0);
                                 }
+                                byte[] imageBytes = Base64.getDecoder().decode(location.getPicture().substring(23));
+                                try {
+                                    FileOutputStream fos = new FileOutputStream("images/" + location + ".jpg");
+                                    fos.write(imageBytes);
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                location.setPicture("images/" + location + ".jpg");
                                 return location;
                             })
                             .collect(Collectors.toSet())))
@@ -238,12 +358,94 @@ public class ArrangementService {
             accomodations = accomodations
                     .stream()
                     .peek(accomodation -> {
+                        /*
                         Location location = accomodation.getLocation();
                         List<Location> list = locationService.findSame(location);
+
                         if(!list.isEmpty()){
                             accomodation.setLocation(list.get(0));
                         }else{
-                            accomodation.setLocation(location);
+
+                            imageBytes = Base64.getDecoder().decode(accomodation.getLocation().getPicture().substring(23));
+                            try {
+                                FileOutputStream fos = new FileOutputStream("images/" + accomodation.getLocation() + ".jpg");
+                                fos.write(imageBytes);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        accomodation.getLocation().setPicture("images/" + accomodation.getLocation() + ".jpg");
+                        accomodation.setLocation(location);
+
+
+                         */
+                        byte[] imageBytes;
+                        Random rand = new Random();
+                        if (accomodation.getPicture1()!=null){
+                            imageBytes = Base64.getDecoder().decode(accomodation.getPicture1().substring(23));
+                            try {
+                                String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                                FileOutputStream fos = new FileOutputStream(name);
+                                fos.write(imageBytes);
+                                accomodation.setPicture1(name);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        if (accomodation.getPicture2()!=null){
+                            imageBytes = Base64.getDecoder().decode(accomodation.getPicture2().substring(23));
+                            try {
+                                String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                                FileOutputStream fos = new FileOutputStream(name);
+                                fos.write(imageBytes);
+                                accomodation.setPicture2(name);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        if (accomodation.getPicture3()!=null){
+                            imageBytes = Base64.getDecoder().decode(accomodation.getPicture3().substring(23));
+                            try {
+                                String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                                FileOutputStream fos = new FileOutputStream(name);
+                                fos.write(imageBytes);
+                                accomodation.setPicture3(name);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        if (accomodation.getPicture4()!=null){
+                            imageBytes = Base64.getDecoder().decode(accomodation.getPicture4().substring(23));
+                            try {
+                                String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                                FileOutputStream fos = new FileOutputStream(name);
+                                fos.write(imageBytes);
+                                accomodation.setPicture4(name);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        if (accomodation.getPicture5()!=null){
+                            imageBytes = Base64.getDecoder().decode(accomodation.getPicture5().substring(23));
+                            try {
+                                String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                                FileOutputStream fos = new FileOutputStream(name);
+                                fos.write(imageBytes);
+                                accomodation.setPicture5(name);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        if (accomodation.getPicture6()!=null){
+                            imageBytes = Base64.getDecoder().decode(accomodation.getPicture6().substring(23));
+                            try {
+                                String name = "images/" + accomodation.getName() + rand.nextInt(10000) + ".jpg";
+                                FileOutputStream fos = new FileOutputStream(name);
+                                fos.write(imageBytes);
+                                accomodation.setPicture6(name);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     })
                     .collect(Collectors.toSet());
@@ -266,6 +468,42 @@ public class ArrangementService {
         arrangementRepository.save(arrangement);
 
 
+    }
+    @Transactional
+    public void saveArrangement(Arrangement arrangement){
+
+        if (!findArrangementByName(arrangement.getName(),Pageable.unpaged()).isEmpty()){
+            throw new IllegalStateException("Name " + arrangement.getName() + " of arrangement already exists");
+        }
+
+        arrangement.setPrograms(arrangement.getPrograms()
+                .stream()
+                .peek(program -> program.setLocations(program.getLocations()
+                        .stream()
+                        .map(location -> {
+                            List<Location> list = locationService.findSame(location);
+                            if(!list.isEmpty()){
+                                return list.get(0);
+                            }
+                            return location;
+                        })
+                        .collect(Collectors.toSet())))
+                .collect(Collectors.toSet()));
+
+        arrangement.setAccomodations(arrangement.getAccomodations()
+                .stream()
+                .map(accomodation -> {
+                    List<Accomodation> list = accomodationService.findSame(accomodation);
+                    if(list.isEmpty()){
+                        return accomodation;
+                    }else{
+                        return list.get(0);
+                    }
+                })
+                .collect(Collectors.toSet()));
+
+
+        arrangementRepository.save(arrangement);
     }
 
 

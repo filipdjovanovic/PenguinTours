@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class ReservationController {
     private final ReservationService reservationService;
     private final ArrangementService arrangementService;

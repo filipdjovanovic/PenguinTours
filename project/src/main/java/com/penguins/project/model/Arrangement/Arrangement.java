@@ -1,6 +1,7 @@
 package com.penguins.project.model.Arrangement;
 
 
+import com.penguins.project.model.Location.Location;
 import com.penguins.project.model.Program.Program;
 import com.penguins.project.model.Reservation.Reservation;
 import com.penguins.project.model.Accomodation.Accomodation;

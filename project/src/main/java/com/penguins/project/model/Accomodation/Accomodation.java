@@ -38,28 +38,22 @@ public class Accomodation {
     private Boolean ac;
     private Boolean internet;
 
-    //Mozda da frontend pazi o broju slika
-    //private List<Byte[]> slike;
+    private String picture1;
 
-    @Lob
-    private Byte[] slika1;
-    @Lob
-    private Byte[] slika2;
-    @Lob
-    private Byte[] slika3;
-    @Lob
-    private Byte[] slika4;
-    @Lob
-    private Byte[] slika5;
-    @Lob
-    private Byte[] slika6;
+    private String picture2;
+
+    private String picture3;
+
+    private String picture4;
+    private String picture5;
+    private String picture6;
 
     @ManyToMany(mappedBy = "accomodations")
     private Set<Arrangement> arrangements = new HashSet<>();
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Location location;
+    //@ManyToOne(cascade = CascadeType.ALL)
+    //private Location location;
 
     
 }

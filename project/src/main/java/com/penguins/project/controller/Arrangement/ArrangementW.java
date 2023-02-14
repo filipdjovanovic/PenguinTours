@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +37,13 @@ public class ArrangementW {
         this.remark = arrangement.getRemark();
         this.accomodations = arrangement.getAccomodations().
                 stream()
-                .map(Accomodation -> new AccomodationW(Accomodation))
+                .map(Accomodation -> {
+                    try {
+                        return new AccomodationW(Accomodation);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .collect(Collectors.toSet());
         this.programs = arrangement.getPrograms()
                 .stream()

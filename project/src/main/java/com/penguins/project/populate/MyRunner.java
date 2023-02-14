@@ -20,8 +20,11 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //populator.populateRole();
-        //populator.populateUser();
-        //populator.populateArrangements();
+
+        populator.populateRole();
+        populator.populateUser();
+        populator.populateArrangements();
+
+
     }
 }
